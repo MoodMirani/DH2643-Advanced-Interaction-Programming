@@ -22,6 +22,18 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.status(200).send(htmlFile);
 });
 
+router.get(
+  "/api/getsomedata",
+  (req: express.Request, res: express.Response) => {
+    console.log("I'm in the getsomedata route.");
+    setTimeout(() => {
+      //Faking a DB call
+      res.status(200).send({ someData: "The data." });
+    }, 1000);
+  }
+);
+//Now try setting up some code on the client to fetch this.
+
 const server = https.createServer(options, app);
 
 //Callback to m
