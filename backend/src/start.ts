@@ -2,12 +2,20 @@ import express from "express";
 import path from "path"; //path is a native Node package.
 import https from "https"; //Me too.
 import fs from "fs"; //file system
+import cors from "cors";
 
-const app: express.Application = express(); //O ur app helps us set up our server.
+const app: express.Application = express(); //Our 'app' helps us set up our server.
 const port = process.env.PORT || 8080; //'process' has info about the current process and we can get an environment variables.
 const router = express.Router();
 
-/* Note that we need to intall 'mkcert' and generate certificates 
+/* Example of how separation between production and development environment 
+   might be achieved. */
+if (!(process.env.NODE_ENV === "production")) {
+  //Development environment can be configured here...
+  app.use(cors({ credentials: true, origin: `https://localhost:8080/` }));
+}
+
+/* Note that we need to brew install 'mkcert' and generate certificates 
 in order for the https to work during developent. */
 const options = {
   key: fs.readFileSync("./cert/localhost-key.pem"),
