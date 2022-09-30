@@ -1,4 +1,4 @@
-import path from "path";
+const path = require("path");
 
 const loaders = [];
 loaders.push({
@@ -13,7 +13,7 @@ loaders.push({
   exclude: /node_modules/,
 });
 
-export default {
+module.exports = {
   entry: {
     app: "./src/app.tsx",
   },
