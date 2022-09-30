@@ -9,8 +9,11 @@ loaders.push({
 
 loaders.push({
   test: /\.(ts|tsx)$/,
-  use: "ts-loader",
+  loader: "ts-loader",
   exclude: /node_modules/,
+  options: {
+    configFile: "tsconfig.client.json",
+  },
 });
 
 module.exports = {
