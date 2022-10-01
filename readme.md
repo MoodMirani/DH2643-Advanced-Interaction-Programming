@@ -19,7 +19,7 @@ This runs the frontend with the development server, which allows for hot-reloadi
 
 0. In /frontend, run `npm run dev`
 1. In /backend, run `npm run start:dev`
-2. The app should be viewable in the browser at address http://localhost:3000/.
+2. The app should be viewable in the browser at address https://localhost:3000/.
 
 ## Building with webpack
 
