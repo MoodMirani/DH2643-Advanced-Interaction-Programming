@@ -9,7 +9,7 @@ loaders.push({
 
 export default {
     entry: {
-        app: './app.jsx'
+        app: './src/app.jsx'
     }, 
     module: {
         rules: loaders
