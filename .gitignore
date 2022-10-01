@@ -2,3 +2,4 @@ backend/node_modules
 backend/cert
 *.DS_Store
 dist
+dist/main.bundle.js
