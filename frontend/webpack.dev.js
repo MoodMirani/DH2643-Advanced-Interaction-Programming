@@ -10,5 +10,10 @@ module.exports = merge(common, {
       directory: path.join(path.resolve(), "../dist"),
     },
     port: 3000,
+    http2: true,
+    https: {
+      key: fs.readFileSync("../backend/cert/localhost-key.pem"),
+      cert: fs.readFileSync("../backend/cert/localhost.pem"),
+    },
   },
 });

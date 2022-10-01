@@ -15,35 +15,40 @@ if (!(process.env.NODE_ENV === "production")) {
   //Development environment can be configured here.
 
   //Resolves CORS issues during development.
-  app.use(cors({ credentials: true, origin: `https://localhost:8080/` }));
+  app.use(
+    cors({
+      credentials: true,
+      origin: `https://localhost:8080/`,
+    })
+  );
 }
 
 app.use(cookieParser());
 app.use(express.json()); //Middleware are functions that will be run prior to getting to our routes.
-app.use(express.static(path.join(__dirname, "../dist"))); //Where to find the statically served content.
+app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
 /*  To use authentication on the main route, we'd do something like */
-app.use(
-  "/",
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    /* To access and validate tokens sent by the client, we can typically do 
+//app.use(
+//  "/",
+//  (req: express.Request, res: express.Response, next: express.NextFunction) => {
+/* To access and validate tokens sent by the client, we can typically do 
        something like this: */
-    //       const auth = req.headers.;
-    //       if(!auth) res.status(403).send(some object with other information)
-    /* Find the token, validate it with some library, then if it's valid, continue
+//       const auth = req.headers.;
+//       if(!auth) res.status(403).send(some object with other information)
+/* Find the token, validate it with some library, then if it's valid, continue
        with calling next() function in the middleware chain. */
-    next();
-  }
-);
+//    next(); //Important to call the next() function in the pipeline when all is ok.
+//  }
+//);
 
 /* Note that we need to brew install 'mkcert' and generate certificates 
 in order for the https to work during developent. */
 const options = {
-  key: fs.readFileSync("./cert/localhost-key.pem"),
+  key: fs.readFileSync("./cert/localhost-key.pem"), //Why not ../cert ?
   cert: fs.readFileSync("./cert/localhost.pem"),
 };
 
 app.get("/", (req: express.Request, res: express.Response) => {
-  const htmlFile = path.join(__dirname, "../dist/index.html");
+  const htmlFile = path.join(__dirname, "../../dist/index.html");
   res
     .status(200)
     // If we're using our server for authorization, we may put out token into

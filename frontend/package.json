@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack server --config webpack.dev.js",
+    "build:dev": "webpack --config webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -17,6 +19,7 @@
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
     "@babel/preset-react": "^7.18.6",
+    "@types/axios": "^0.14.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "babel-loader": "^8.2.5",
