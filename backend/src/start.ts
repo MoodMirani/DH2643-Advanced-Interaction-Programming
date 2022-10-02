@@ -18,12 +18,12 @@ if (!(process.env.NODE_ENV === "production")) {
   app.use(
     cors({
       credentials: true,
-      origin: `https://localhost:8080/`,
+      origin: `https://localhost:3000`,
     })
   );
 }
 
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.json()); //Middleware are functions that will be run prior to getting to our routes.
 app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
 /*  To use authentication on the main route, we'd do something like */
@@ -63,16 +63,13 @@ app.get("/", (req: express.Request, res: express.Response) => {
     .send(htmlFile);
 });
 
-router.get(
-  "/api/getsomedata",
-  (req: express.Request, res: express.Response) => {
-    console.log("I'm in the getsomedata route.");
-    setTimeout(() => {
-      //Faking a DB call
-      res.status(200).send({ someData: "The data." });
-    }, 1000);
-  }
-);
+app.get("/api/getsomedata", (req: express.Request, res: express.Response) => {
+  console.log("I'm in the getsomedata route.");
+  setTimeout(() => {
+    //Faking a DB call
+    res.status(200).send({ someData: "The data." });
+  }, 1000);
+});
 
 //Now try setting up some code on the client to fetch this.
 const server = https.createServer(options, app);
