@@ -10,12 +10,13 @@ These steps should only be done once per person, which should allow for local de
 1. Install [mkcert](https://github.com/FiloSottile/mkcert) for your OS. On macOS you could use `brew install mkcert` from any directory, if you have brew.
 2. Make a new directory /backend/cert.
 3. In the /backend/cert directory, run `mkcert localhost`.
-4. Go to /frontend and run `npm install`.
-5. Go to /backend and run `npm install`.
+4. In order for the team to have the same version of node, you could either install node v18.7.0, or install nvm (node version manager) for your OS. With nvm, you could run `nvm use` from /backend/ or /frontend prior to running the npm commands below for both installing and running things. `nvm use` makes use of the nvm version listed in .nvmrc. (I'm not sure if this setting survives terminal shutdown...)
+5. Go to /frontend and run `npm install`.
+6. Go to /backend and run `npm install`.
 
 ## Running the project with the development server
 
-This runs the frontend with the development server, which allows for hot-reloading and faster iteration, rather than building the main.bundle.js after every change.
+This runs the frontend with the development server, which allows for hot-reloading and faster iteration, rather than building the main.bundle.js after every change (as described in the section Building with webpack).
 
 0. In /frontend, run `npm run dev`
 1. In /backend, run `npm run start:dev`
