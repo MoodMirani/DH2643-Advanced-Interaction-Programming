@@ -2,10 +2,10 @@ const path = require("path");
 
 const loaders = [];
 loaders.push({
-  test: /\.jsx?$/,
-  exclude: "/node_modules",
-  use: "babel-loader",
-});
+    test: /\.jsx?$/,
+    exclude: '/node_modules',
+    use: 'babel-loader'
+})
 
 loaders.push({
   test: /\.(ts|tsx)$/,
