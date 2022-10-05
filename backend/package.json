@@ -4,7 +4,9 @@
   "description": "Tjoo",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "build": "tsc -p .",
+    "start": "NODE_PATH=./build node build/start.js"
   },
   "author": "",
   "license": "ISC",
