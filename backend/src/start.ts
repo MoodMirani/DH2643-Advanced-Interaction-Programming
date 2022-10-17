@@ -6,7 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 const app: express.Application = express(); //Our 'app' helps us set up our server.
-const port = process.env.PORT || 8080; //'process' has info about the current process and we can get an environment variables.
+const port = process.env.PORT || 3000; //'process' has info about the current process and we can get an environment variables.
 const router = express.Router();
 
 /* Example of how separation between production and development environment 

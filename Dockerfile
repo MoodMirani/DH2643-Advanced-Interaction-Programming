@@ -22,7 +22,7 @@ WORKDIR /usr/src/app/backend
 # pm2 is a process manager for node. Where is pm2 installed globally? 
 #  Host OS? Inside the container?
 RUN npm install --only=production && npm install -g pm2 
-# && npm install -g typescript
+RUN npm install typescript --save-dev
 #RUN npm install
 #ENV NODE_ENV=production
 # We can define environment variables with ENV. Variables specified in 
