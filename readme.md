@@ -4,8 +4,8 @@ Write a project description here.
 
 ## Project structure
 
-- `/dist` contains the main.bundle.js after building the /frontend with `npm run build:dev` which uses webpack. This directory is served by the backend when the /backend is started with `npm run start:dev`.
-- `/backend/build`contains the javascript output of the typescript files that the backend is made of. The typescript compiler puts javascript into this directory when running `npm run build` in /backend.
+- `/dist` contains the main.bundle.js after building the frontend with `npm run build:dev` in /frontend (uses webpack). /dist is served by the backend when the backend is started with `npm run start:dev` from /backend.
+- `/backend/build`contains the javascript output of the typescript files that the backend is made of. The typescript compiler puts javascript into /backend/build when running `npm run build` in /backend.
 
 ## Installation
 
