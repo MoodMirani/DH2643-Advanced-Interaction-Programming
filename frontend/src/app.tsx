@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { getAPI } from "./webAPI/webAPI";
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import { Counter } from './components/counter/counter';
 
 const App = () => {
   const [fetchedData, setFetchedData] = React.useState("");
@@ -19,10 +22,17 @@ const App = () => {
   }, []);
 
   return (
+    
     <div>
-      Hello World<div>{` ${fetchedData}`}</div>
+      Hello World!<div>{` ${fetchedData}`}</div>
+      <Counter/>
     </div>
   );
 };
 
-ReactDOM.render(<App />, document.querySelector("#app")); // #app targets the div that has id = "app"
+ReactDOM.render(
+  <Provider store={store}>¨
+    <App />
+    </Provider>, 
+  document.querySelector("#app")
+); // #app targets the div that has id = "app"
