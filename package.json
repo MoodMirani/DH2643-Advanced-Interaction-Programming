@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "@types/google.maps": "^3.50.4",
+    "css-loader": "^6.7.1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "webpack": "^5.74.0"
+  },
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "start": "PORT=8443 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+}

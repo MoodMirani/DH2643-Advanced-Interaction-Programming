@@ -1,38 +1,39 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { getAPI } from "./webAPI/webAPI";
-import { store } from './redux/store';
-import { Provider } from 'react-redux';
-import { Counter } from './components/counter/counter';
+import React, {useEffect, useState} from 'react';
+import './App.css';
+import Map from './Map/';
+import {loadMapApi} from "./utils/GoogleMapsUtils";
 
-const App = () => {
-  const [fetchedData, setFetchedData] = React.useState("");
+function App() {
+    const [scriptLoaded, setScriptLoaded] = useState(false);
+    const [distanceInKm, setDistanceInKm] = useState<number>(-1);
 
-  /*Consider using Redux Thunk or Redux Saga here instead, to get
-  data from API, as mentioned at 1:03:00 in Lecture 3. 
-  
-  The useEffect is fetching data here only for simplicity's sake.
-  */
-  React.useEffect(() => {
-    getAPI()
-      .then((data) => {
-        setFetchedData(data);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+    useEffect(() => {
+        const googleMapScript = loadMapApi();
+        googleMapScript.addEventListener('load', function () {
+            setScriptLoaded(true);
+        });
+    }, []);
 
-  return (
-    
-    <div>
-      Hello World!<div>{` ${fetchedData}`}</div>
-      <Counter/>
-    </div>
-  );
-};
+    const renderDistanceSentence = () => {
+        return (
+            <div className='distance-info'>
+                {`Distance between selected marker and home address is ${distanceInKm}km.`}
+            </div>
+        );
+    };
 
-ReactDOM.render(
-  <Provider store={store}>¨
-    <App />
-    </Provider>, 
-  document.querySelector("#app")
-); // #app targets the div that has id = "app"
+    return (
+        <div className="App">
+            {scriptLoaded && (
+                <Map
+                  mapType={google.maps.MapTypeId.ROADMAP}
+                  mapTypeControl={true}
+                  setDistanceInKm={setDistanceInKm}
+                />
+            )}
+            {distanceInKm > -1 && renderDistanceSentence()}
+        </div>
+    );
+}
+
+export default App;
