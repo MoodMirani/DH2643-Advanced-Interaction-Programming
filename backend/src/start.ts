@@ -7,13 +7,6 @@ import fs from "fs"; //file system
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-// declare var process: {
-//   env: {
-//     MY_PORT: string;
-//     MY_ADDRESS: string;
-//   };
-// };
-
 const app: express.Application = express(); //Our 'app' helps us set up our server.
 
 // process.env now has the keys and values you defined in your .env file. Therefore,

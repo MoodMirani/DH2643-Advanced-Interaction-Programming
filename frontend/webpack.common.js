@@ -31,5 +31,5 @@ module.exports = {
     filename: "main.bundle.js",
     path: path.resolve(path.resolve(), "../dist"),
   },
-  plugins: [new Dotenv()],
+  plugins: [new Dotenv({ path: "../backend/.env" })],
 };

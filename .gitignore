@@ -3,4 +3,3 @@ backend/cert
 *.DS_Store
 dist/main.bundle.js
 .vscode
-.env*

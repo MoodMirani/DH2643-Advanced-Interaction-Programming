@@ -1,3 +1,4 @@
+//Uncertain if this is necessary.
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
