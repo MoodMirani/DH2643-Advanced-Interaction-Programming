@@ -1,3 +1,5 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import path from "path"; //path is a native Node package.
 import https from "https"; //Me too.
@@ -5,8 +7,21 @@ import fs from "fs"; //file system
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+// declare var process: {
+//   env: {
+//     MY_PORT: string;
+//     MY_ADDRESS: string;
+//   };
+// };
+
 const app: express.Application = express(); //Our 'app' helps us set up our server.
-const port = process.env.PORT || 3000; //'process' has info about the current process and we can get an environment variables.
+
+// process.env now has the keys and values you defined in your .env file. Therefore,
+// we probably don't need the || 8080 part on the next line?
+const port = process.env.MY_PORT; //'process' has info about the current process and we can get an environment variables.
+const address = process.env.MY_ADDRESS;
+console.log(`Backend. ADDRESS: ${address}, PORT: ${port}`);
+
 const router = express.Router();
 
 /* Example of how separation between production and development environment 
@@ -18,11 +33,11 @@ if (!(process.env.NODE_ENV === "production")) {
   app.use(
     cors({
       credentials: true,
-      origin: `https://localhost:3000`,
+      origin: `${address}:${port}`,
     })
   );
 }
-
+app.use(router);
 //app.use(cookieParser());
 app.use(express.json()); //Middleware are functions that will be run prior to getting to our routes.
 app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
@@ -63,13 +78,16 @@ app.get("/", (req: express.Request, res: express.Response) => {
     .send(htmlFile);
 });
 
-app.get("/api/getsomedata", (req: express.Request, res: express.Response) => {
-  console.log("I'm in the getsomedata route.");
-  setTimeout(() => {
-    //Faking a DB call
-    res.status(200).send({ someData: "The data." });
-  }, 1000);
-});
+router.get(
+  "/api/getsomedata",
+  (req: express.Request, res: express.Response) => {
+    console.log("I'm in the getsomedata route.");
+    setTimeout(() => {
+      //Faking a DB call
+      res.status(200).send({ someData: "The data." });
+    }, 1000);
+  }
+);
 
 //Now try setting up some code on the client to fetch this.
 const server = https.createServer(options, app);
