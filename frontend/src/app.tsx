@@ -1,9 +1,4 @@
 import React, {useEffect, useState} from 'react';
-<<<<<<< Updated upstream
-import './App.css';
-=======
-//import './App.css';
->>>>>>> Stashed changes
 import Map from './Map/';
 import {loadMapApi} from "./utils/GoogleMapsUtils";
 
@@ -25,10 +20,7 @@ function App() {
                 <Map
                   mapType={google.maps.MapTypeId.ROADMAP}
                   mapTypeControl={true}
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
                 />
             )}
         </div>
