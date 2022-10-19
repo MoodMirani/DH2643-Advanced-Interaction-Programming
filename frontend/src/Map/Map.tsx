@@ -4,7 +4,6 @@ import './Map.scss';
 interface IMap {
     mapType: google.maps.MapTypeId;
     mapTypeControl?: boolean;
-    setDistanceInKm: React.Dispatch<React.SetStateAction<number>>;
 }
 
 
@@ -275,16 +274,6 @@ const Map: React.FC<IMap> = ({ mapType, mapTypeControl = false}) => {
                 new google.maps.Map(ref.current, {
                     zoom: zoomLevel,
                     center: address,
-                    mapTypeControl: mapTypeControl,
-                    streetViewControl: false,
-                    rotateControl: false,
-                    scaleControl: true,
-                    fullscreenControl: false,
-                    panControl: false,
-                    zoomControl: true,
-                    gestureHandling: 'cooperative',
-                    mapTypeId: mapType,
-                    draggableCursor: 'pointer',
                 })
             );
         }
