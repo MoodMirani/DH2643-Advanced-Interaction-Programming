@@ -1,5 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
+<<<<<<< Updated upstream
 import './Map.scss';
+=======
+import './Map.css';
+>>>>>>> Stashed changes
 
 interface IMap {
     mapType: google.maps.MapTypeId;
@@ -274,6 +278,10 @@ const Map: React.FC<IMap> = ({ mapType, mapTypeControl = false}) => {
                 new google.maps.Map(ref.current, {
                     zoom: zoomLevel,
                     center: address,
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 })
             );
         }

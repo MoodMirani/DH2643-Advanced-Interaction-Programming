@@ -17,6 +17,7 @@ loaders.push({
 })
 
 loaders.push({
+<<<<<<< Updated upstream
   test: /\.s[ac]ss$/i,
         use: [
           "style-loader",
@@ -26,6 +27,11 @@ loaders.push({
 })
 
 
+=======
+  test: /\.css$/i,
+  use: ["style-loader", "css-loader"],
+})
+>>>>>>> Stashed changes
 ;
 
 module.exports = {
@@ -36,7 +42,11 @@ module.exports = {
     rules: loaders,
   },
   resolve: {
+<<<<<<< Updated upstream
     extensions: [".tsx", ".ts", ".js", ".jsx", ".css", ".scss"],
+=======
+    extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
+>>>>>>> Stashed changes
   },
   output: {
     filename: "main.bundle.js",
