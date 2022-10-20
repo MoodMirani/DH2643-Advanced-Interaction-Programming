@@ -9,6 +9,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import config from "./config/config";
 import connectDB from "./db";
+import authRouter from "./auth/Route";
 
 connectDB();
 
@@ -60,6 +61,7 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 app.use(router);
+app.use("/api/auth", authRouter); // Handles /api/auth
 //app.use(cookieParser());
 app.use(express.json()); //Middleware are functions that will be run prior to getting to our routes.
 app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
@@ -80,7 +82,7 @@ app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the
 //body-parser allows us to post JSON to backend, which we can access on req.body.
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(express.json()); //See if this one is necessary.
 /* Note that we need to brew install 'mkcert' and generate certificates 
 in order for the https to work during developent. */
 const options = {
