@@ -1,18 +1,44 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+import bodyParser from "body-parser";
 import express from "express";
 import path from "path"; //path is a native Node package.
 import https from "https"; //Me too.
 import fs from "fs"; //file system
 import cors from "cors";
-import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+import { config } from "./config/config";
+
+mongoose.connect(`${config.db_url}/${config.db_name}`);
+
+//import cookieParser from "cookie-parser";
+//import { config } from "./config/config"; //In addition to .env files, we could make our own config modules.
+
+/* const pgp = require("pg-promise")();
+const connection = {
+  host: "localhost",
+  port: 5432, //5432 is default.
+  database: "iprog2",
+  user: "myUser",
+  password: "1u85/!Gh",
+  allowExitOnIdle: true, // To auto-exit on idle, without having to shut-down the pool.
+};
+const db = pgp(connection); //Our database instance.
+
+db.any("select * from users where active = $1", [true])
+  .then((data: any) => {
+    console.log("DATA:", data); // print data;
+  })
+  .catch((error: any) => {
+    console.log("ERROR:", error); // print the error;
+  }); */
 
 const app: express.Application = express(); //Our 'app' helps us set up our server.
 
 // process.env now has the keys and values you defined in your .env file. Therefore,
 // we probably don't need the || 8080 part on the next line?
-const port = process.env.MY_PORT; //'process' has info about the current process and we can get an environment variables.
-const address = process.env.MY_ADDRESS;
+const port = process.env.PORT || 8080; //'process' has info about the current process and we can get an environment variables.
+const address = process.env.ADDRESS;
 console.log(`Backend. ADDRESS: ${address}, PORT: ${port}`);
 
 const router = express.Router();
@@ -48,6 +74,10 @@ app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the
 //  }
 //);
 
+//body-parser allows us to post JSON to backend, which we can access on req.body.
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 /* Note that we need to brew install 'mkcert' and generate certificates 
 in order for the https to work during developent. */
 const options = {
@@ -81,6 +111,32 @@ router.get(
     }, 1000);
   }
 );
+
+router.get("/api/bars/:id", (req: express.Request, res: express.Response) => {
+  var bar = { id: 4, name: "Meta", businessHours: "4 pm - 8 pm" }; //Here we'd like to get this from DB.
+  //var barId = req.params.id;
+  //By using req.params.id to get the provided id.
+  res.status(200).send(bar);
+});
+
+router.get("/api/bars", (req: express.Request, res: express.Response) => {
+  var bars = {}; //Return all bars from DB.
+  res.status(200).send(bars);
+});
+
+router.get("/api/drinks/:id", (req: express.Request, res: express.Response) => {
+  var drink = { id: 1, name: "White Russian", Type: "alcoholic", Price: 30 }; //Here we'd like to get this from DB.
+  //var drinkId = req.params.id;
+  //By using req.params.id to get the provided id.
+  res.status(200).send(drink);
+});
+
+router.get("/api/users/:id", (req: express.Request, res: express.Response) => {
+  var user = { id: 23, name: "Lars Larsson", email: "a@b.c" }; //Here we'd like to get this from DB.
+  //var drinkId = req.params.id;
+  //By using req.params.id to get the provided id.
+  res.status(200).send(user);
+});
 
 //Now try setting up some code on the client to fetch this.
 const server = https.createServer(options, app);
