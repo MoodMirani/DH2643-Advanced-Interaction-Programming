@@ -4,7 +4,7 @@
   "description": "Tjoo",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon",
+    "start:dev": "NODE_ENV=development nodemon",
     "build": "tsc -p .",
     "start": "NODE_PATH=./build node build/start.js"
   },

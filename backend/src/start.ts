@@ -40,20 +40,22 @@ const app: express.Application = express(); //Our 'app' helps us set up our serv
 // we probably don't need the || 8080 part on the next line?
 const port = process.env.PORT || 8080; //'process' has info about the current process and we can get an environment variables.
 const address = process.env.ADDRESS;
-console.log(`Backend. ADDRESS: ${address}, PORT: ${port}`);
+console.log(
+  `Backend. ADDRESS: ${address}, PORT: ${port}, process.env.NODE_ENV: ${process.env.NODE_ENV}`
+);
 
 const router = express.Router();
 
 /* Example of how separation between production and development environment 
    might be achieved. */
-if (!(process.env.NODE_ENV === "production")) {
+if (process.env.NODE_ENV === "development") {
   //Development environment can be configured here.
 
   //Resolves CORS issues during development.
   app.use(
     cors({
       credentials: true,
-      origin: `${address}:${port}`,
+      origin: `${address}:3000`,
     })
   );
 }
