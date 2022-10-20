@@ -7,9 +7,10 @@ import https from "https"; //Me too.
 import fs from "fs"; //file system
 import cors from "cors";
 import mongoose from "mongoose";
-import { config } from "./config/config";
+import config from "./config/config";
+import connectDB from "./db";
 
-mongoose.connect(`${config.db_url}/${config.db_name}`);
+connectDB();
 
 //import cookieParser from "cookie-parser";
 //import { config } from "./config/config"; //In addition to .env files, we could make our own config modules.
@@ -101,37 +102,34 @@ app.get("/", (req: express.Request, res: express.Response) => {
     .send(htmlFile);
 });
 
-router.get(
-  "/api/getsomedata",
-  (req: express.Request, res: express.Response) => {
-    console.log("I'm in the getsomedata route.");
-    setTimeout(() => {
-      //Faking a DB call
-      res.status(200).send({ someData: "The data." });
-    }, 1000);
-  }
-);
+router.get("/getsomedata", (req: express.Request, res: express.Response) => {
+  console.log("I'm in the getsomedata route.");
+  setTimeout(() => {
+    //Faking a DB call
+    res.status(200).send({ someData: "The data." });
+  }, 1000);
+});
 
-router.get("/api/bars/:id", (req: express.Request, res: express.Response) => {
+router.get("/bars/:id", (req: express.Request, res: express.Response) => {
   var bar = { id: 4, name: "Meta", businessHours: "4 pm - 8 pm" }; //Here we'd like to get this from DB.
   //var barId = req.params.id;
   //By using req.params.id to get the provided id.
   res.status(200).send(bar);
 });
 
-router.get("/api/bars", (req: express.Request, res: express.Response) => {
+router.get("/bars", (req: express.Request, res: express.Response) => {
   var bars = {}; //Return all bars from DB.
   res.status(200).send(bars);
 });
 
-router.get("/api/drinks/:id", (req: express.Request, res: express.Response) => {
+router.get("/drinks/:id", (req: express.Request, res: express.Response) => {
   var drink = { id: 1, name: "White Russian", Type: "alcoholic", Price: 30 }; //Here we'd like to get this from DB.
   //var drinkId = req.params.id;
   //By using req.params.id to get the provided id.
   res.status(200).send(drink);
 });
 
-router.get("/api/users/:id", (req: express.Request, res: express.Response) => {
+router.get("/users/:id", (req: express.Request, res: express.Response) => {
   var user = { id: 23, name: "Lars Larsson", email: "a@b.c" }; //Here we'd like to get this from DB.
   //var drinkId = req.params.id;
   //By using req.params.id to get the provided id.
@@ -145,3 +143,9 @@ const server = https.createServer(options, app);
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}.`);
 });
+
+//How do we handle errors here? This doesn't work.
+// process.on("unhandeledRejection", err = >{
+//   console.log(`An error happened: ${err.messagé}`);
+//   server.close();
+// });

@@ -6,7 +6,7 @@ export const getAPI = () => {
   console.log(`Frontend. ADDRESS: ${address}, PORT: ${port}`);
   console.log(`Mode: ${process.env.NODE_ENV}`);
   return axios
-    .get(`${address}:${port}/api/getsomedata`, {
+    .get(`${address}:${port}/getsomedata`, {
       withCredentials: true,
     })
     .then(({ data }: { data: { someData: string } }) => data.someData);
