@@ -1,5 +1,6 @@
 import express from "express";
 import bcrypt from "bcryptjs";
+import crypto from "crypto";
 import { UserModel } from "../models/User";
 
 export async function register(

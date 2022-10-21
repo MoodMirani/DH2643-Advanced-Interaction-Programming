@@ -6,6 +6,7 @@ const config = {
   production: "production",
   db_url: "mongodb://localhost",
   db_name: "iprog",
+  address: process.env.ADDRESS || "https://localhost",
 };
 
 export default config;

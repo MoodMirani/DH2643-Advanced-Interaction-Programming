@@ -39,8 +39,8 @@ const app: express.Application = express(); //Our 'app' helps us set up our serv
 
 // process.env now has the keys and values you defined in your .env file. Therefore,
 // we probably don't need the || 8080 part on the next line?
-const port = process.env.PORT || 8080; //'process' has info about the current process and we can get an environment variables.
-const address = process.env.ADDRESS;
+const port = config.port; //'process' has info about the current process and we can get an environment variables.
+const address = config.address;
 console.log(
   `Backend. ADDRESS: ${address}, PORT: ${port}, process.env.NODE_ENV: ${process.env.NODE_ENV}`
 );
