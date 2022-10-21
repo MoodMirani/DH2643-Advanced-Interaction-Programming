@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import ReactDOM from "react-dom";
-import './Map.css';
+import './map.scss';
 
 
 interface IMap {
