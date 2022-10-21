@@ -37,13 +37,20 @@ export async function login(
     return res.status(400).json({ message: "Password or username missing." });
   }
   try {
-    const user = await UserModel.findOne({ username, password });
+    const user = await UserModel.findOne({ username });
     if (!user) {
       res
         .status(401)
         .json({ message: "Unable to login.", error: "No user found." });
     } else {
-      res.status(200).json({ message: "Logged in.", user });
+      //Here, compare the given hashed password with the hashed password in DB.
+      bcrypt.compare(password, user.password).then(function (result) {
+        if (result) {
+          res.status(200).json({ message: "Logged in.", user });
+        } else {
+          res.status(400).json({ message: "Login failed." });
+        }
+      });
     }
   } catch (error) {
     res
