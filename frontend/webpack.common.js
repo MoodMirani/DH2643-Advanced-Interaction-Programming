@@ -22,13 +22,6 @@ loaders.push({
   use: ["style-loader", "css-loader"],
 })
 
-loaders.push({
-  test: /\.s[ac]ss$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader",],
-})
 ;
 
 module.exports = {
@@ -39,7 +32,7 @@ module.exports = {
     rules: loaders,
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx", ".css", ".scss"],
+    extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
   },
   output: {
     filename: "main.bundle.js",
