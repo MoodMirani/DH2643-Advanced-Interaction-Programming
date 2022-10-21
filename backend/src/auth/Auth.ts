@@ -59,9 +59,21 @@ export async function login(
       //Here, compare the given hashed password with the hashed password in DB.
       bcrypt.compare(password, user.password).then(function (result) {
         if (result) {
+          const maxAge = 4 * 50 * 50;
+          const token = jwt.sign(
+            { id: user._id, username, role: user.role },
+            jwtSecret,
+            {
+              expiresIn: maxAge,
+            }
+          );
+          res.cookie("jwt", token, {
+            httpOnly: true,
+            maxAge: maxAge * 2000,
+          });
           res.status(200).json({ message: "Logged in.", user });
         } else {
-          res.status(400).json({ message: "Login failed." });
+          res.status(401).json({ message: "Login failed." });
         }
       });
     }
