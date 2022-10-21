@@ -1,7 +1,10 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 import { UserModel } from "../models/User";
+
+const jwtSecret = process.env.JWT_SECRET;
 
 export async function register(
   req: express.Request,
@@ -17,8 +20,17 @@ export async function register(
 
   bcrypt.hash(password, 9).then(async (hash) => {
     try {
-      await UserModel.create({ username, password: hash, email }).then((user) =>
-        res.status(200).send({ message: "User created.", user })
+      await UserModel.create({ username, password: hash, email }).then(
+        (user) => {
+          const maxAge = 4 * 50 * 50;
+          const token = jwt.sign(
+            { id: user._id, username, role: user.role },
+            jwtSecret,
+            { expiresIn: maxAge }
+          );
+          res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 2000 }); //We need https!
+          res.status(201).send({ message: "User created.", user });
+        }
       );
     } catch (error) {
       res
