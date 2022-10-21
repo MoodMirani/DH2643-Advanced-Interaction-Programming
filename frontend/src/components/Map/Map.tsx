@@ -306,7 +306,6 @@ const Map: React.FC<IMap> = ({mapType}) => {
                     shouldFocus: false,
                 });
                 });
-            
         }
     };
     useEffect(startMap, [map]);

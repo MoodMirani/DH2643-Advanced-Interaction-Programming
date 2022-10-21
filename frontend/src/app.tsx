@@ -5,7 +5,7 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { Counter } from './components/counter/counter';
 import { loadMapApi } from './components/utils/GoogleMapsUtils';
-import Map from './components/Map/Map';
+import Map from './components/map/map';
 
 const App = () => {
   const [fetchedData, setFetchedData] = React.useState("");
