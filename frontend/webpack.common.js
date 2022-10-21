@@ -1,5 +1,6 @@
 const path = require("path");
 
+
 const loaders = [];
 loaders.push({
     test: /\.jsx?$/,
@@ -14,7 +15,14 @@ loaders.push({
   options: {
     configFile: "tsconfig.client.json",
   },
-});
+})
+
+loaders.push({
+  test: /\.css$/i,
+  use: ["style-loader", "css-loader"],
+})
+
+;
 
 module.exports = {
   entry: {
@@ -24,7 +32,7 @@ module.exports = {
     rules: loaders,
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"],
+    extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
   },
   output: {
     filename: "main.bundle.js",
