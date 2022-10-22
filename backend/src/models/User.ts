@@ -1,21 +1,23 @@
 import { Schema, model, connect } from "mongoose";
 
 export interface User {
-  username: string;
+  first_name?: string;
+  last_name?: string;
   email: string;
   password: string;
-  role: string;
-  favoriteDrinks?: [string];
-  avatar?: string;
+  //role: string;
+  profile_img?: string;
+  bio?: string;
 }
 
 const schema = new Schema<User>({
-  username: { type: String, unique: true, required: true },
+  first_name: { type: String, unique: false, required: false },
+  last_name: { type: String, unique: false, required: false },
   email: { type: String, unique: true, required: true },
   password: { type: String, minlength: 8, required: true },
-  role: { type: String, default: "Basic", required: true },
-  favoriteDrinks: { type: [String], unique: false, required: false },
-  avatar: { type: String, unique: false, required: false },
+  //role: { type: String, default: "Basic", required: true },
+  profile_img: { type: String, unique: false, required: false },
+  bio: { type: String, unique: false, required: false },
 });
 export const UserModel = model<User>("User", schema);
 //export default UserModel;
