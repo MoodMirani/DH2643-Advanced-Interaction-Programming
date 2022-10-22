@@ -64,7 +64,9 @@ app.use(router);
 //app.use(bodyParser.json());
 //app.use(express.json()); //See if this one is necessary.
 /* Note that we need to brew install 'mkcert' and generate certificates 
-in order for the https to work during developent. */
+in order for the https to work during developent. 
+*/
+
 const options = {
   key: fs.readFileSync("./cert/localhost-key.pem"), //Why not ../cert ?
   cert: fs.readFileSync("./cert/localhost.pem"),
