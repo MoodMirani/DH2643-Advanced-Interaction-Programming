@@ -70,7 +70,7 @@ const options = {
   cert: fs.readFileSync("./cert/localhost.pem"),
 };
 
-app.get("/home", userAuth, (req: express.Request, res: express.Response) => {
+app.get("/profile", userAuth, (req: express.Request, res: express.Response) => {
   res.send("Logged-in user route.");
 });
 
