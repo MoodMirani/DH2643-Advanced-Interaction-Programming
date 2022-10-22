@@ -11,7 +11,7 @@ export async function register(
   res: express.Response,
   next: express.NextFunction //Should we not call next somewhere below?
 ) {
-  const { username, password, email } = req.body;
+  const { first_name, last_name, email, password } = req.body;
   if (password.length < 8) {
     return res
       .status(400)
@@ -19,18 +19,19 @@ export async function register(
   }
   bcrypt.hash(password, 9).then(async (hash) => {
     try {
-      await UserModel.create({ username, password: hash, email }).then(
-        (user) => {
-          const maxAge = 4 * 50 * 50;
-          const token = jwt.sign(
-            { id: user._id, username, role: user.role },
-            jwtSecret,
-            { expiresIn: maxAge }
-          );
-          res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 2000 }); //We need https!
-          res.status(201).send({ message: "User created.", user });
-        }
-      );
+      await UserModel.create({
+        first_name,
+        last_name,
+        email,
+        password: hash,
+      }).then((user) => {
+        const maxAge = 4 * 50 * 50;
+        const token = jwt.sign({ id: user._id, email }, jwtSecret, {
+          expiresIn: maxAge,
+        });
+        res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 2000 }); //We need https!
+        res.status(201).send({ message: "User created.", user });
+      });
     } catch (error) {
       res
         .status(401)
@@ -44,12 +45,12 @@ export async function login(
   res: express.Response,
   next: express.NextFunction
 ) {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    return res.status(400).json({ message: "Password or username missing." });
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ message: "Password or email missing." });
   }
   try {
-    const user = await UserModel.findOne({ username });
+    const user = await UserModel.findOne({ email });
     if (!user) {
       res
         .status(401)
@@ -59,13 +60,9 @@ export async function login(
       bcrypt.compare(password, user.password).then(function (result) {
         if (result) {
           const maxAge = 4 * 50 * 50;
-          const token = jwt.sign(
-            { id: user._id, username, role: user.role },
-            jwtSecret,
-            {
-              expiresIn: maxAge,
-            }
-          );
+          const token = jwt.sign({ id: user._id, email }, jwtSecret, {
+            expiresIn: maxAge,
+          });
           res.cookie("jwt", token, {
             httpOnly: true,
             maxAge: maxAge * 2000,
