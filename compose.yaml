@@ -1,0 +1,21 @@
+services:
+  backend:
+    image: iprogbackend
+    ports:
+      - 127.0.0.1:8080:8080
+    environment:
+      NODE_ENV: development
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+  db:
+    image: mongo
+    volumes: "mongo:/var/lib/mongo/data"
+    networks:
+      - mynetwork
+
+  networks:
+    mynetwork:
+  volumes:
+    mongo:
