@@ -91,7 +91,10 @@ export function userAuth(
 ) {
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    /**In jsonwebtoken.verify, the callback (3rd param) is called with the decoded payload
+     * if the signature is valid, if not, it will be called with the error.
+     */
+    jwt.verify(token, jwtSecret, (err: any, decodedToken: string) => {
       if (err) {
         return res.status(401).json({ message: "Unauthorized." });
       } else {

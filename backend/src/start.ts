@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import bodyParser from "body-parser";
-import express, { application } from "express";
+import express from "express";
 import path from "path"; //path is a native Node package.
 import https from "https"; //Me too.
 import fs from "fs"; //file system
@@ -11,33 +11,10 @@ import config from "./config/config";
 import connectDB from "./db";
 import authRouter from "./auth/Route";
 import cookieParser from "cookie-parser";
+import { userAuth } from "./auth/Auth";
 
 connectDB();
-
-//import cookieParser from "cookie-parser";
-//import { config } from "./config/config"; //In addition to .env files, we could make our own config modules.
-
-/* const pgp = require("pg-promise")();
-const connection = {
-  host: "localhost",
-  port: 5432, //5432 is default.
-  database: "iprog2",
-  user: "myUser",
-  password: "1u85/!Gh",
-  allowExitOnIdle: true, // To auto-exit on idle, without having to shut-down the pool.
-};
-const db = pgp(connection); //Our database instance.
-
-db.any("select * from users where active = $1", [true])
-  .then((data: any) => {
-    console.log("DATA:", data); // print data;
-  })
-  .catch((error: any) => {
-    console.log("ERROR:", error); // print the error;
-  }); */
-
 const app: express.Application = express(); //Our 'app' helps us set up our server.
-
 // process.env now has the keys and values you defined in your .env file. Therefore,
 // we probably don't need the || 8080 part on the next line?
 const port = config.port; //'process' has info about the current process and we can get an environment variables.
@@ -45,7 +22,6 @@ const address = config.address;
 console.log(
   `Backend. ADDRESS: ${address}, PORT: ${port}, process.env.NODE_ENV: ${process.env.NODE_ENV}`
 );
-
 const router = express.Router();
 
 /* Example of how separation between production and development environment 
@@ -61,12 +37,12 @@ if (process.env.NODE_ENV === "development") {
     })
   );
 }
-application.use(cookieParser());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
 app.use(express.json());
 app.use("/api/auth", authRouter); // Handles /api/auth
 app.use(router);
-//app.use(cookieParser());
+
 //Middleware are functions that will be run prior to getting to our routes.
 
 /*  To use authentication on the main route, we'd do something like */
@@ -93,6 +69,15 @@ const options = {
   key: fs.readFileSync("./cert/localhost-key.pem"), //Why not ../cert ?
   cert: fs.readFileSync("./cert/localhost.pem"),
 };
+
+app.get("/home", userAuth, (req: express.Request, res: express.Response) => {
+  res.send("Logged-in user route.");
+});
+
+app.get("/logout", (req: express.Request, res: express.Response) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
+});
 
 app.get("/", (req: express.Request, res: express.Response) => {
   const htmlFile = path.join(__dirname, "../../dist/index.html");
