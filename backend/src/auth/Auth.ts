@@ -17,7 +17,6 @@ export async function register(
       .status(400)
       .send({ message: "Less that 8 characters in password." });
   }
-
   bcrypt.hash(password, 9).then(async (hash) => {
     try {
       await UserModel.create({ username, password: hash, email }).then(
@@ -81,5 +80,27 @@ export async function login(
     res
       .status(400)
       .json({ message: "Error logging in.", error: error.message });
+  }
+}
+
+//Middleware for authenticating a user.
+export function userAuth(
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction //Should we not call next somewhere below?
+) {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+      if (err) {
+        return res.status(401).json({ message: "Unauthorized." });
+      } else {
+        next();
+      }
+    });
+  } else {
+    return res
+      .status(401)
+      .json({ message: "Unauthorized, token unavailable." });
   }
 }

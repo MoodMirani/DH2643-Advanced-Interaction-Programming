@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import bodyParser from "body-parser";
-import express from "express";
+import express, { application } from "express";
 import path from "path"; //path is a native Node package.
 import https from "https"; //Me too.
 import fs from "fs"; //file system
@@ -10,6 +10,7 @@ import mongoose from "mongoose";
 import config from "./config/config";
 import connectDB from "./db";
 import authRouter from "./auth/Route";
+import cookieParser from "cookie-parser";
 
 connectDB();
 
@@ -60,7 +61,7 @@ if (process.env.NODE_ENV === "development") {
     })
   );
 }
-
+application.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
 app.use(express.json());
 app.use("/api/auth", authRouter); // Handles /api/auth
