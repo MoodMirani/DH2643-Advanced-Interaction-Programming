@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import { Typography } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
-
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default function NavBar() {
 
@@ -46,10 +46,10 @@ export default function NavBar() {
             <Box textAlign='center'>
                 <Button variant="contained" component={Link} to={'/SignUp'} style={{backgroundColor: "#EF6767"}}>Sign Up</Button>
             </Box>
-   
-        
+            <Box textAlign='center'>
+                <Button variant="contained" component={Link} to={'/Map'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Pub Map</Button>
+            </Box>
             </div>
-
             <div className="mapButton">
                
             </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ReactDOM from "react-dom";
 import { getAPI } from "./webAPI/webAPI";
@@ -18,6 +18,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Expenses from "./pages/expenses";
 import Invoices from "./pages/invoices";
 import { createRoot } from "react-dom/client";
+
 import LoginScreen from "./components/login/login";
 import SignUp from "./components/SignUp/SignUp";
 import {useSelector, useDispatch} from 'react-redux';
@@ -25,6 +26,10 @@ import { useAppSelector, useAppDispatch } from './hooks'
 import { setFirstName } from "./redux/UserSlice";
 
 
+
+
+import { loadMapApi } from './components/utils/GoogleMapsUtils';
+//import Map from "./components/Map/Map";
 
 
 function App() {
@@ -35,9 +40,11 @@ function App() {
   
   return (
     <div className="App">
+
       <LoginScreen/>
     </div>
   );
+  
 }
 
 const container = document.getElementById("app");
@@ -45,6 +52,7 @@ const root = createRoot(container!);
 
 root.render(
   <div className="mainContainer ">
+
     <Provider store ={store}>
       <BrowserRouter>
         <Grid container spacing={2} height={"100%"}>
@@ -62,6 +70,7 @@ root.render(
               <Route path="MyVisitedPubs" element={<MyVisitedPubs />} />
               <Route path="LoginScreen" element={<LoginScreen />} />
               <Route path="SignUp" element={<SignUp />} />
+              <Route path="Map" element={<Profile/>}/>
             </Routes>
           </Grid>
         </Grid>

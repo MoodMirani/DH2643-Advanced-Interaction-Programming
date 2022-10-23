@@ -4,3 +4,9 @@ backend/cert
 dist/main.bundle.js
 .vscode
 backend/.env
+node_modules/
+jspm_packages/
+node_modules/@types/google.maps/LICENSE
+node_modules/@types/google.maps/index.d.ts
+node_modules/@types/google.maps/package.json
+node_modules/@types/google.maps/README.md

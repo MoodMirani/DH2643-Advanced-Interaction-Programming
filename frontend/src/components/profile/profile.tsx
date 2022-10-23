@@ -96,15 +96,6 @@ export default function Profile(){
                 </Grid>
             </Grid>
         </div>
-        <div className="addButton">
-        
-            <Box textAlign='right'>
-                 <Button variant="contained" style={{backgroundColor: "#5970C1"}}>Add Pub Visits
-                 
-                 </Button>
-                 
-            </Box>    
-        </div>
         </div>
     )
 }
