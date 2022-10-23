@@ -41,7 +41,7 @@ root.render(
 
       <Grid xs={9}>
         <Routes>
-          <Route path="/" element={<Profile />} />
+          <Route path="/" element={<AddVisit/>} />
           <Route path="profile" element={<Profile />} />
           <Route path="AddVisit" element={<AddVisit />} />
         </Routes>
