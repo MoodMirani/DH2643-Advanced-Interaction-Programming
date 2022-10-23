@@ -33,6 +33,6 @@ const userSlice = createSlice({
   extraReducers: {},
 })
 
-export const { setFirstName } = userSlice.actions
+export const { setFirstName, setLastName, setEmail, setPassword } = userSlice.actions
 
 export default userSlice.reducer

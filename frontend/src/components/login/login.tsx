@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,21 +14,23 @@ import { makeStyles } from "@mui/material/styles";
 import './login.scss';
 import {useSelector, useDispatch} from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../../hooks'
-import { setFirstName } from '../../redux/UserSlice';
+import { setFirstName, setEmail, setPassword } from '../../redux/UserSlice';
 
 
 const LoginScreen = () => {
+  const userObject = useAppSelector((state) => state.user.FirstName);
+  const dispatch = useAppDispatch();
 
-  
-  const userObject = useAppSelector((state) => state.user.FirstName)
-  const dispatch = useAppDispatch()
-  console.log(userObject)
-  dispatch(setFirstName("Mood"))
-  console.log(userObject)
+  const [inputemail, setInputemail] = useState('');
+  const [inputpassword, setInputpassword] = useState('');
 
 
+  dispatch(setEmail(inputemail))
+  dispatch(setPassword(inputpassword))
 
- 
+  console.log(useAppSelector((state) => state.user.Email))
+  console.log(useAppSelector((state) => state.user.Password))
+
 
   
   return (
@@ -38,8 +40,9 @@ const LoginScreen = () => {
           <Typography component="h1" variant="h2">
             Sign in
           </Typography >
-          <form className='form' noValidate>
+          <form className='form' noValidate autoComplete="off">
             <TextField
+              onChange={(e) => setInputemail(e.target.value)}
               variant="outlined"
               margin="normal"
               required
@@ -50,6 +53,7 @@ const LoginScreen = () => {
               autoFocus
             />
             <TextField
+              onChange={(e) => setInputpassword(e.target.value)}
               variant="outlined"
               margin="normal"
               required
@@ -61,6 +65,7 @@ const LoginScreen = () => {
              
             />
             <Button
+              
               type="submit"
               fullWidth
               variant="contained"

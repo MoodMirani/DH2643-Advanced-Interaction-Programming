@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,21 +19,27 @@ import './login.scss';
 
 
 
+
 export default function SignUp() {
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [inputemail, setInputemail] = useState('');
+  const [inputpassword, setInputpassword] = useState('');
   
 
 
   const addUser = () => axios.post("https://localhost:8080/api/auth/register", {
-    first_name: "name4", 
-    last_name: "last4", 
-    password: "1234abc4", 
-    email: "test4@test.com"})
+    first_name: firstname, 
+    last_name: lastname, 
+    password: inputemail, 
+    email: inputpassword})
   .then(function(response) {
     console.log(response);
   })
   .catch(function(error) {
     console.log(error);
   });
+  
   
   
 
@@ -47,6 +54,7 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={(e) => setFirstName(e.target.value)}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -59,6 +67,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={(e) => setLastName(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -70,6 +79,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={(e) => setInputemail(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -81,6 +91,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={(e) => setInputpassword(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
