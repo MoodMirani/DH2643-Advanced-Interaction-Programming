@@ -11,6 +11,7 @@ import { sizing } from '@mui/system';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardMedia from '@mui/material/CardMedia';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,7 +27,7 @@ export default function Profile(){
             <div>
             <Typography variant="h2" align="center" style={{marginTop: '25px', marginBottom: '25px'}}>My Profile</Typography>
             </div> 
- 
+            
         <div>
             <Grid container spacing={4} direction="column">
                 <Grid xs={4}>
@@ -96,8 +97,12 @@ export default function Profile(){
             </Grid>
         </div>
         <div className="addButton">
+        
             <Box textAlign='right'>
-                 <Button variant="contained" style={{backgroundColor: "#5970C1"}}>Add Pub Visisat</Button>
+                 <Button variant="contained" style={{backgroundColor: "#5970C1"}}>Add Pub Visits
+                 
+                 </Button>
+                 
             </Box>    
         </div>
         </div>
