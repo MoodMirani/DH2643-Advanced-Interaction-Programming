@@ -41,6 +41,10 @@ export default function NavBar() {
                 <Button variant="contained" component={Link} to={'/MyVisitedPubs'} style={{backgroundColor: "#EF6767"}}>My Visited Pubs</Button>
             </Box>
             <Box textAlign='center'>
+                <Button variant="contained" component={Link} to={'/LoginScreen'} style={{backgroundColor: "#EF6767"}}>Login Screen</Button>
+            </Box>
+   
+            <Box textAlign='center'>
                     <Button variant="contained" style={{backgroundColor: "#EF6767"}}>Pub Map</Button>
                 </Box>
             </div>

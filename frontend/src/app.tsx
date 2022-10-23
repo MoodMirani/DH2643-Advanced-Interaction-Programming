@@ -18,14 +18,12 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Expenses from "./pages/expenses";
 import Invoices from "./pages/invoices";
 import { createRoot } from "react-dom/client";
+import LoginScreen from "./components/login/login";
 
 function App() {
   return (
     <div className="App">
-      <Link to="/profile">Profile</Link> | {" "}
-      <Link to="/AddVisit">AddVisit</Link> | {" "}
-      <Link to="/">Home</Link>
-      
+      <LoginScreen/>
     </div>
   );
 }
@@ -35,25 +33,27 @@ const root = createRoot(container!);
 
 root.render(
   <div className="mainContainer ">
-    <BrowserRouter>
-    <Grid container spacing={2} height={"100%"}>
-      <Grid xs={3}>
-                <NavBar/>
-      </Grid>
+    <Provider store ={store}>
+      <BrowserRouter>
+        <Grid container spacing={2} height={"100%"}>
+          <Grid xs={3}>
+                    <NavBar/>
+          </Grid>
 
-      <Grid xs={9}>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="AddVisit" element={<AddVisit />} />
-          <Route path="MyPatches" element={<MyPatches />} />
-          <Route path="MyDrinks" element={<MyDrinks />} />
-          <Route path="MyVisitedPubs" element={<MyVisitedPubs />} />
-        </Routes>
-      </Grid>
-
-    </Grid>
-    </BrowserRouter>
+          <Grid xs={9}>
+            <Routes>
+              <Route path="/" element={<App />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="AddVisit" element={<AddVisit />} />
+              <Route path="MyPatches" element={<MyPatches />} />
+              <Route path="MyDrinks" element={<MyDrinks />} />
+              <Route path="MyVisitedPubs" element={<MyVisitedPubs />} />
+              <Route path="LoginScreen" element={<LoginScreen />} />
+            </Routes>
+          </Grid>
+        </Grid>
+      </BrowserRouter>
+    </Provider>
   </div>
 );
 
