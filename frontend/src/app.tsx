@@ -8,6 +8,12 @@ import NavBar from "./components/navBar/navBar";
 import Grid from '@mui/material/Unstable_Grid2';
 import './app.scss';
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import Profile from "./components/profile/profile";
+import AddVisit from "./components/addVisit/addVisit";
+import MyPatches from "./components/MyPatches/MyPatches";
+import MyDrinks from "./components/MyDrinks/MyDrinks";
+import MyVisitedPubs from "./components/MyVisitedPubs/MyVisitedPubs";
+
 
 const App = () => {
   const [fetchedData, setFetchedData] = React.useState("");
@@ -33,8 +39,11 @@ const App = () => {
         <Grid container spacing={2} height={"100%"}>
           <Grid xs={3}>
             <NavBar/>
+       
           </Grid>
-          <Grid xs={9}>
+
+          <Grid xs={9} style={{backgroundColor: "#EAEAEA"}}>
+            <Profile/>
               <Routes>
                 <Route path="/">
                     this is the main page
