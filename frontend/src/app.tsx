@@ -1,4 +1,5 @@
 import React from "react";
+
 import ReactDOM from "react-dom";
 import { getAPI } from "./webAPI/webAPI";
 import { store } from './redux/store';
@@ -15,88 +16,41 @@ import MyDrinks from "./components/MyDrinks/MyDrinks";
 import MyVisitedPubs from "./components/MyVisitedPubs/MyVisitedPubs";
 
 
-const App = () => {
-  const [fetchedData, setFetchedData] = React.useState("");
 
-  /*Consider using Redux Thunk or Redux Saga here instead, to get
-  data from API, as mentioned at 1:03:00 in Lecture 3. 
-  
-  The useEffect is fetching data here only for simplicity's sake.
-  */
-  React.useEffect(() => {
-    getAPI()
-      .then((data) => {
-        setFetchedData(data);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+import ReactDOM from "react-dom/client";
 
+import { render } from "react-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Expenses from "./pages/expenses";
+import Invoices from "./pages/invoices";
+import { createRoot } from "react-dom/client";
+
+function App() {
   return (
-
-    
-    <div className="mainContainer">
-      <Router>
-        <Grid container spacing={2} height={"100%"}>
-          <Grid xs={3}>
-            <NavBar/>
-       
-          </Grid>
-
-          <Grid xs={9} style={{backgroundColor: "#EAEAEA"}}>
-            <Profile/>
-              <Routes>
-                <Route path="/">
-                    this is the main page
-                  </Route>
-                  <Route path="/profile">
-                    this is the profile page
-                  </Route>
-                  <Route path="/map">
-                    this is the map page
-                  </Route>
-                  <Route path="/login">
-                    this is the login page
-                  </Route>
-                  <Route path="/register">
-                    this is the register page
-                  </Route>
-                  <Route path="/patches">
-                    this is the patches page
-                  </Route>
-                  <Route path="/drinks">
-                    this is the drinks page
-                  </Route>
-                  <Route path="/visitedPubs">
-                    this is the visitedPubs page
-                  </Route>
-              </Routes>
-          </Grid>
-        </Grid>
-      </Router>
-
-    
-      
+    <div className="App">
+      <h1>Bookkeeper!</h1>
+      <nav
+        style={{
+          borderBottom: "solid 1px",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Link to="/invoices">Invoices</Link> |{" "}
+        <Link to="/expenses">Expenses</Link>
+      </nav>
     </div>
-
-    /* 
-    <div>
-      Hello World!<div>{` ${fetchedData}`}</div>
-      <Counter/>
-    </div>
-
-      <div className="navBarContainer">
-        <NavBar/>
-      </div>
-      <div className="page">
-        this is a page
-      </div>
-    */
   );
-};
+}
 
-ReactDOM.render(
-  <Provider store={store}>¨
-    <App />
-    </Provider>, 
-  document.querySelector("#app")
-); // #app targets the div that has id = "app"
+const container = document.getElementById("app");
+const root = createRoot(container!);
+
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="expenses" element={<Expenses />} />
+      <Route path="invoices" element={<Invoices />} />
+    </Routes>
+  </BrowserRouter>
+);
