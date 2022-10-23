@@ -4,7 +4,7 @@ const config = {
   port: process.env.PORT || 8080,
   development: "development",
   production: "production",
-  db_url: "mongodb://localhost",
+  db_url: "mongodb://127.0.0.1",
   db_name: "iprog",
   address: process.env.ADDRESS || "https://localhost",
 };
