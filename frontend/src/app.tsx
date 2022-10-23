@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ReactDOM from "react-dom";
 import { getAPI } from "./webAPI/webAPI";
@@ -18,6 +18,8 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Expenses from "./pages/expenses";
 import Invoices from "./pages/invoices";
 import { createRoot } from "react-dom/client";
+import { loadMapApi } from './components/utils/GoogleMapsUtils';
+//import Map from "./components/Map/Map";
 
 function App() {
   return (
@@ -25,9 +27,9 @@ function App() {
       <Link to="/profile">Profile</Link> | {" "}
       <Link to="/AddVisit">AddVisit</Link> | {" "}
       <Link to="/">Home</Link>
-      
     </div>
   );
+  
 }
 
 const container = document.getElementById("app");
@@ -49,7 +51,8 @@ root.render(
           <Route path="MyPatches" element={<MyPatches />} />
           <Route path="MyDrinks" element={<MyDrinks />} />
           <Route path="MyVisitedPubs" element={<MyVisitedPubs />} />
-        </Routes>
+          <Route path="Map" element={<Profile/>}/>
+          </Routes>
       </Grid>
 
     </Grid>

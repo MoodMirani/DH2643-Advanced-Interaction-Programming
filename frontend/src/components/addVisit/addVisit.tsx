@@ -13,7 +13,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import TextField from '@mui/material/TextField';
 import { Container, InputLabel,  CssBaseline, Input} from '@mui/material';
 
-
 export default function AddVisit() {
     return (
         <div>
@@ -60,7 +59,6 @@ export default function AddVisit() {
                     maxRows={10}
                     />
                 </Grid>
-
                 <div className="addVisitButton">
                     <Button variant="contained" style={{backgroundColor: "#EF6767"}}>Add</Button>
                 </div>
