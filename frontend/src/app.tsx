@@ -19,8 +19,20 @@ import Expenses from "./pages/expenses";
 import Invoices from "./pages/invoices";
 import { createRoot } from "react-dom/client";
 import LoginScreen from "./components/login/login";
+import SignUp from "./components/SignUp/SignUp";
+import {useSelector, useDispatch} from 'react-redux';
+import { useAppSelector, useAppDispatch } from './hooks'
+import { setFirstName } from "./redux/UserSlice";
+
+
+
 
 function App() {
+
+  
+
+  
+  
   return (
     <div className="App">
       <LoginScreen/>
@@ -49,6 +61,7 @@ root.render(
               <Route path="MyDrinks" element={<MyDrinks />} />
               <Route path="MyVisitedPubs" element={<MyVisitedPubs />} />
               <Route path="LoginScreen" element={<LoginScreen />} />
+              <Route path="SignUp" element={<SignUp />} />
             </Routes>
           </Grid>
         </Grid>
