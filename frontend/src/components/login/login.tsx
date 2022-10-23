@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,13 +12,27 @@ import Icon from '@mui/material/Icon';
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/material/styles";
 import './login.scss';
-
+import {useSelector, useDispatch} from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../hooks'
+import { setFirstName } from '../../redux/UserSlice';
 
 
 const LoginScreen = () => {
+
+  
+  const userObject = useAppSelector((state) => state.user.FirstName)
+  const dispatch = useAppDispatch()
+  console.log(userObject)
+  dispatch(setFirstName("Mood"))
+  console.log(userObject)
+
+
+
+ 
+
   
   return (
-    <Grid container component="main" className='signInGrid'>
+    <Grid container className='signInGrid'>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className='paper'>
           <Typography component="h1" variant="h2">
@@ -33,7 +47,6 @@ const LoginScreen = () => {
               id="email"
               label="Email Address"
               name="email"
-        
               autoFocus
             />
             <TextField

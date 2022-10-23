@@ -43,10 +43,11 @@ export default function NavBar() {
             <Box textAlign='center'>
                 <Button variant="contained" component={Link} to={'/LoginScreen'} style={{backgroundColor: "#EF6767"}}>Login Screen</Button>
             </Box>
-   
             <Box textAlign='center'>
-                    <Button variant="contained" style={{backgroundColor: "#EF6767"}}>Pub Map</Button>
-                </Box>
+                <Button variant="contained" component={Link} to={'/SignUp'} style={{backgroundColor: "#EF6767"}}>Sign Up</Button>
+            </Box>
+   
+        
             </div>
 
             <div className="mapButton">
