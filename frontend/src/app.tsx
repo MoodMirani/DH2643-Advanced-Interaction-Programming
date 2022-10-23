@@ -1,21 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
 
 import { render } from "react-dom";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Expenses from "./pages/expenses";
 import Invoices from "./pages/invoices";
+import { createRoot } from "react-dom/client";
 
 function App() {
   return (
     <div className="App">
-    <h1>Bookkeeper!</h1>
+      <h1>Bookkeeper!</h1>
       <nav
         style={{
           borderBottom: "solid 1px",
@@ -29,20 +25,15 @@ function App() {
   );
 }
 
+const container = document.getElementById("app");
+const root = createRoot(container!);
 
-
-
-const rootElement = document.getElementById("app");
-
-render(
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="expenses" element={<Expenses />} />
-        <Route path="invoices" element={<Invoices />} />
-      </Routes>
-    </BrowserRouter>,
-    rootElement
-  );
-
-
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="expenses" element={<Expenses />} />
+      <Route path="invoices" element={<Invoices />} />
+    </Routes>
+  </BrowserRouter>
+);
