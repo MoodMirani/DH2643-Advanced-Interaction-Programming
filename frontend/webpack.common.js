@@ -1,11 +1,12 @@
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 const loaders = [];
 loaders.push({
-    test: /\.jsx?$/,
-    exclude: '/node_modules',
-    use: 'babel-loader'
-})
+  test: /\.jsx?$/,
+  exclude: "/node_modules",
+  use: "babel-loader",
+});
 
 
 
@@ -46,4 +47,5 @@ module.exports = {
     filename: "main.bundle.js",
     path: path.resolve(path.resolve(), "../dist"),
   },
+  plugins: [new Dotenv({ path: "../backend/.env" })],
 };
