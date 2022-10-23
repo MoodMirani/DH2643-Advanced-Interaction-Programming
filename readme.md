@@ -1,6 +1,7 @@
 # DH2643 Project group 12
 
-Node version 18.7.0.
+[API documentation](https://documenter.getpostman.com/view/4793879/2s84DrR2RK)
+Node version 18.7.0 (.nvmrc available).
 
 ## Project structure
 
@@ -18,6 +19,7 @@ These steps should only be done once per person, which should allow for local de
 4. In order for the team to have the same version of node, you could either install node v18.7.0, or install nvm (node version manager) for your OS. With nvm, you could run `nvm use` from /backend/ or /frontend prior to running the npm commands below for both installing and running things. `nvm use` makes use of the node version listed in .nvmrc. (I'm not sure if this setting survives terminal shutdown.)
 5. Go to /frontend and run `npm install`.
 6. Go to /backend and run `npm install`.
+7. Create a .env file in backend and paste the distributed token (emailed to course instructors).
 
 ## Workflows
 
