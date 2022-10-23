@@ -1,5 +1,6 @@
 import React from 'react';
-import "./profile.scss"
+import "./Profile.scss"
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -9,6 +10,15 @@ import Typography from '@mui/material/Typography';
 import { sizing } from '@mui/system';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardMedia from '@mui/material/CardMedia';
+import Paper from '@mui/material/Paper';
+
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
 export default function Profile(){
     return (
@@ -65,18 +75,19 @@ export default function Profile(){
                         <Typography sx={{ fontSize: 24 }} gutterBottom style={{color:"white"}}>
                             My Visited Pubs
                         </Typography>
-                        <Grid>
-                        <Card sx={{width: 100, height: 50}}>
-                            <div className="pubName">
-                                <Typography style={{color:"#EF6767"}}>Media</Typography>
-                            </div>
-                        </Card>
-                        <Card sx={{width: 100, height: 50}}>
-                            <div className="pubName">
-                                <Typography style={{color:"#EF6767"}}>Data</Typography>
-                            </div>
-                        </Card>
+                        <Box sx={{ flexGrow: 1 }}>
+                        <Grid container spacing={2}>
+                            <Grid xs={8}>
+                            <Item style={{color:"#EF6767"}}>Media</Item>
+                            </Grid>
+                            <Grid xs={4}>
+                            <Item style={{color:"#EF6767"}}>Data</Item>
+                            </Grid>
+                            <Grid xs={4}>
+                            <Item style={{color:"#EF6767"}}>Open</Item>
+                            </Grid>
                         </Grid>
+                        </Box>
                         </CardContent>
                         </Card>
                         </Button>     
@@ -86,7 +97,7 @@ export default function Profile(){
         </div>
         <div className="addButton">
             <Box textAlign='right'>
-                 <Button variant="contained" style={{backgroundColor: "#EF6767"}}>Add Pub Visit</Button>
+                 <Button variant="contained" style={{backgroundColor: "#5970C1"}}>Add Pub Visit</Button>
             </Box>    
         </div>
         </div>

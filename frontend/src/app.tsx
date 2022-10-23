@@ -8,7 +8,7 @@ import NavBar from "./components/navBar/navBar";
 import Grid from '@mui/material/Unstable_Grid2';
 import './app.scss';
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import Profile from "./components/profile/profile";
+import Profile from "./components/Profile/Profile";
 import AddVisit from "./components/addVisit/addVisit";
 import MyPatches from "./components/MyPatches/MyPatches";
 import MyDrinks from "./components/MyDrinks/MyDrinks";
