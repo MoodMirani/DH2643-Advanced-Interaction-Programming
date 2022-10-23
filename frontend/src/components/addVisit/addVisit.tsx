@@ -12,22 +12,6 @@ import { sizing } from '@mui/system';
 import Grid from '@mui/material/Unstable_Grid2';
 import TextField from '@mui/material/TextField';
 import { Container, InputLabel,  CssBaseline, Input} from '@mui/material';
-import { FileUpload, FileUploadProps } from '../../FileUpload/FileUpload';
-
-const fileUploadProp: FileUploadProps = {
-    accept: 'image/*',
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (
-            event.target.files !== null &&
-            event.target?.files?.length > 0
-        ) {
-            console.log('saving ${event.target.value}')
-        }
-    },
-    onDrop: (event: React.DragEvent<HTMLElement>) => {
-        console.log('Drop ${event.dataTransfer.files[0].name}')
-    },
-}
 
 export default function AddVisit() {
     return (
@@ -75,7 +59,6 @@ export default function AddVisit() {
                     maxRows={10}
                     />
                 </Grid>
-
                 <div className="addVisitButton">
                     <Button variant="contained" style={{backgroundColor: "#EF6767"}}>Add</Button>
                 </div>

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import { Typography } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
-
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default function NavBar() {
 
@@ -24,27 +24,28 @@ export default function NavBar() {
                 sx={{ width: 150, height: 150 }}
                 />
             </div>
-            <div className="profileButton">
-            <Box textAlign='center'>
-                <Button variant="contained" component={Link} to={'/profile'} style={{backgroundColor: "#EF6767"}}>My Profile</Button>
-            </Box>
-            <Box textAlign='center'>
-                <Button variant="contained" component={Link} to={'/AddVisit'} style={{backgroundColor: "#EF6767"}}>Add Visit</Button>
-            </Box>
-            <Box textAlign='center'>
-                <Button variant="contained" component={Link} to={'/MyPatches'} style={{backgroundColor: "#EF6767"}}>My Patches</Button>
-            </Box>
-            <Box textAlign='center'>
-                <Button variant="contained" component={Link} to={'/MyDrinks'} style={{backgroundColor: "#EF6767"}}>My Drinks</Button>
-            </Box>
-            <Box textAlign='center'>
-                <Button variant="contained" component={Link} to={'/MyVisitedPubs'} style={{backgroundColor: "#EF6767"}}>My Visited Pubs</Button>
-            </Box>
-            <Box textAlign='center'>
-                    <Button variant="contained" style={{backgroundColor: "#EF6767"}}>Pub Map</Button>
-                </Box>
+            <div className="profileButtons">
+                <Grid container spacing={3} direction="column">
+                    <Box textAlign='center'>
+                        <Button variant="contained"  component={Link} to={'/profile'} style={{backgroundColor: "#EF6767", width:"150px", marginBottom:10}} >My Profile</Button>
+                    </Box>
+                    <Box textAlign='center'>
+                        <Button variant="contained" component={Link} to={'/AddVisit'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Add Visit</Button>
+                    </Box>
+                    <Box textAlign='center'>
+                        <Button variant="contained" component={Link} to={'/MyPatches'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>My Patches</Button>
+                    </Box>
+                    <Box textAlign='center'>
+                        <Button variant="contained" component={Link} to={'/MyDrinks'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>My Drinks</Button>
+                    </Box>
+                    <Box textAlign='center'>
+                        <Button variant="contained" component={Link} to={'/MyVisitedPubs'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>My Visited Pubs</Button>
+                    </Box>
+                    <Box textAlign='center'>
+                        <Button variant="contained" component={Link} to={'/Map'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Pub Map</Button>
+                    </Box>
+                </Grid>
             </div>
-
             <div className="mapButton">
                
             </div>
