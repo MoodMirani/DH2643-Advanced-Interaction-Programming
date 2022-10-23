@@ -22,7 +22,9 @@ import { createRoot } from "react-dom/client";
 function App() {
   return (
     <div className="App">
-      
+      <Link to="/profile">Profile</Link> | {" "}
+      <Link to="/AddVisit">AddVisit</Link> | {" "}
+      <Link to="/">Home</Link>
       
     </div>
   );
@@ -41,9 +43,12 @@ root.render(
 
       <Grid xs={9}>
         <Routes>
-          <Route path="/" element={<AddVisit/>} />
+          <Route path="/" element={<App />} />
           <Route path="profile" element={<Profile />} />
           <Route path="AddVisit" element={<AddVisit />} />
+          <Route path="MyPatches" element={<MyPatches />} />
+          <Route path="MyDrinks" element={<MyDrinks />} />
+          <Route path="MyVisitedPubs" element={<MyVisitedPubs />} />
         </Routes>
       </Grid>
 
