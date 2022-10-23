@@ -2,7 +2,7 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import { UserModel } from "../models/User";
+import { User } from "../models/User";
 
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -19,7 +19,7 @@ export async function register(
   }
   bcrypt.hash(password, 9).then(async (hash) => {
     try {
-      await UserModel.create({
+      await User.create({
         first_name,
         last_name,
         email,
@@ -50,7 +50,7 @@ export async function login(
     return res.status(400).json({ message: "Password or email missing." });
   }
   try {
-    const user = await UserModel.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       res
         .status(401)
@@ -78,6 +78,15 @@ export async function login(
       .status(400)
       .json({ message: "Error logging in.", error: error.message });
   }
+}
+
+export function logout(
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
 }
 
 //Middleware for authenticating a user.

@@ -12,6 +12,8 @@ import connectDB from "./db";
 import authRouter from "./auth/Route";
 import cookieParser from "cookie-parser";
 import { userAuth } from "./auth/Auth";
+import { User, userSchema, PubVisit } from "./models/User";
+//import { PubVisitSchema, PubVisitModel, PubVisit } from "./models/PubVisit";
 
 connectDB();
 const app: express.Application = express(); //Our 'app' helps us set up our server.
@@ -76,10 +78,39 @@ app.get("/profile", userAuth, (req: express.Request, res: express.Response) => {
   res.send("Logged-in user route.");
 });
 
-app.get("/logout", (req: express.Request, res: express.Response) => {
-  res.cookie("jwt", "", { maxAge: 1 });
-  res.redirect("/");
-});
+app.post(
+  "/api/pub_visits",
+  userAuth,
+  async (req: express.Request, res: express.Response) => {
+    const { user_id, pub, drink, patch } = req.body;
+    if (pub.length < 1) {
+      return res
+        .status(400)
+        .send({ message: "Please fill in a pub name longer than zero." });
+    }
+    //Ok, now we need to find the person with the person_id and insert a new PubVisit
+    //into it's pub_visits array.
+    const tempPubVisit = { pub: pub, drink: drink, patch: patch };
+    User.updateOne(
+      { _id: user_id },
+      { $push: { pub_visits: tempPubVisit } }
+    ).then((something) => {
+      res
+        .status(201)
+        .send({ message: "Pub visit added.", addedPubVisit: tempPubVisit });
+    });
+    //const query = { _id: user_id };
+    //const updateDocument = { $push: { pub_visits: { pub, drink, patch } } };
+    //const result = await UserModel.updateOne(query, updateDocument);
+    //await UserModel.findByIdAndUpdate(user_id, tempUser);
+    //res.status(201).send({ message: "Pub visit added." /*, temp*/ });
+  }
+);
+
+// app.get("/logout", (req: express.Request, res: express.Response) => {
+//   res.cookie("jwt", "", { maxAge: 1 });
+//   res.redirect("/");
+// });
 
 app.get("/", (req: express.Request, res: express.Response) => {
   const htmlFile = path.join(__dirname, "../../dist/index.html");
@@ -87,7 +118,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
     .status(200)
     // If we're using our server for authorization, we may put out token into
     // the second parameter of cookie(), that is 'Some enctypted cookie value'.
-    .cookie(`My Cookie`, "Some enctypted cookie value", {
+    .cookie(`My Cookie`, "Some encrypted cookie value", {
       //maxAge: 5000
       expires: new Date("2023-08-09"),
       secure: true, //Makes cookie inaccessible through document.cookie.

@@ -1,6 +1,6 @@
 # DH2643 Project group 12
 
-Write a project description here.
+Node version 18.7.0.
 
 ## Project structure
 
