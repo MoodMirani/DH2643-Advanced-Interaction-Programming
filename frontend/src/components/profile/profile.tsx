@@ -97,7 +97,7 @@ export default function Profile(){
         </div>
         <div className="addButton">
             <Box textAlign='right'>
-                 <Button variant="contained" style={{backgroundColor: "#5970C1"}}>Add Pub Visit</Button>
+                 <Button variant="contained" style={{backgroundColor: "#5970C1"}}>Add Pub Visisat</Button>
             </Box>    
         </div>
         </div>
