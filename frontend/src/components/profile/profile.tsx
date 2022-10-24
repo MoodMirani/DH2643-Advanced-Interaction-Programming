@@ -33,14 +33,14 @@ export default function Profile(){
                 <Grid xs={4}>
                     <div>
                         <Button>
-                        <Card sx={{width: 600, height: 190}} style={{backgroundColor: "#EF6767"}}>
+                        <Card sx={{width: 600, height: 175}} style={{backgroundColor: "#EF6767"}}>
                         <CardContent>
                         <Typography sx={{ fontSize: 24 }} gutterBottom style={{color:"white"}}>
                         My Patches
                         </Typography>
                         <CardMedia style={{width: "auto", maxHeight: "200px"}}
                         component="img"
-                        height="120"
+                        height="110"
                         image="https://i.postimg.cc/JhkkWzBD/patch.png"
                         alt="Patch"
                       />
@@ -52,14 +52,14 @@ export default function Profile(){
                 <Grid xs={4}>
                     <div>
                         <Button>
-                        <Card sx={{width: 600, height: 190}} style={{backgroundColor: "#EF6767"}}>
+                        <Card sx={{width: 600, height: 175}} style={{backgroundColor: "#EF6767"}}>
                         <CardContent>
                         <Typography sx={{ fontSize: 24 }} gutterBottom style={{color:"white"}}>
                             My Drinks
                         </Typography>
                         <CardMedia style={{width: "auto", maxHeight: "200px"}}
                         component="img"
-                        height="120"
+                        height="110"
                         image="https://i.postimg.cc/FFwWZRXf/drink.png"
                         alt="Drink"
                         />
@@ -71,7 +71,7 @@ export default function Profile(){
                 <Grid xs={4}>
                     <div>
                         <Button>
-                        <Card sx={{width: 600, height: 190}} style={{backgroundColor: "#EF6767"}}>
+                        <Card sx={{width: 600, height: 175}} style={{backgroundColor: "#EF6767"}}>
                         <CardContent>
                         <Typography sx={{ fontSize: 24 }} gutterBottom style={{color:"white"}}>
                             My Visited Pubs
