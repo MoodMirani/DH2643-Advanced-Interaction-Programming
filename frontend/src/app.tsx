@@ -40,8 +40,7 @@ function App() {
   
   return (
     <div className="App">
-
-      <LoginScreen/>
+      <LoginScreen />
     </div>
   );
   

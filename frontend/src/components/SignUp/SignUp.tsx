@@ -17,9 +17,6 @@ import axios from "axios";
 import './login.scss';
 
 
-
-
-
 export default function SignUp() {
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
@@ -47,12 +44,12 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className="paper">
-        <Typography component="h1" variant="h2">
+        <Typography component="h1" variant="h2" style={{marginBottom: "10px", textAlign: "center"}}>
           Sign up
         </Typography>
         <form className="form" noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          <Grid container spacing={2} >
+            <Grid item xs={12} sm={6} >
               <TextField
                 onChange={(e) => setFirstName(e.target.value)}
                 autoComplete="fname"
@@ -110,12 +107,13 @@ export default function SignUp() {
             color="primary"
             className="submit"
             onClick={addUser}
+            style={{marginTop: "15px", marginBottom: "15px"}}
             >
             Sign Up
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/" variant="body2">
+              <Link href="/SignUp">
                 Already have an account? Sign in
               </Link>
             </Grid>

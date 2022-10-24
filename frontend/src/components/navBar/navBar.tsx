@@ -12,7 +12,7 @@ export default function NavBar() {
     return (
         <div className="navBar">
             <div className="navBarHeader">
-                <Typography variant="h4" align="center">
+                <Typography variant="h4" align="center" style={{paddingTop:30}}>
                     My Profile
                 </Typography>
             </div>
@@ -45,12 +45,11 @@ export default function NavBar() {
                         <Button variant="contained" component={Link} to={'/Map'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Pub Map</Button>
                     </Box>
                     <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/LoginScreen'} style={{backgroundColor: "#EF6767"}}>Login Screen</Button>
+                        <Button variant="contained" component={Link} to={'/LoginScreen'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Login</Button>
                     </Box>
                     <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/SignUp'} style={{backgroundColor: "#EF6767"}}>Sign Up</Button>
+                        <Button variant="contained" component={Link} to={'/SignUp'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Sign Up</Button>
                     </Box>
-                    
                 </Grid>
             </div>
             <div className="mapButton">
