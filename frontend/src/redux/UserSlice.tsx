@@ -10,6 +10,7 @@ const initialState = {
   Email: "email@test.se",
   Password: "password",
   pubVisits: [],
+  loggedIn: false,
 }
 
 

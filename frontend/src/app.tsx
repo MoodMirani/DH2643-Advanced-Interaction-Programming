@@ -21,9 +21,9 @@ import { createRoot } from "react-dom/client";
 
 import LoginScreen from "./components/login/login";
 import SignUp from "./components/SignUp/SignUp";
-import {useSelector, useDispatch} from 'react-redux';
 import { useAppSelector, useAppDispatch } from './hooks'
 import { setFirstName } from "./redux/UserSlice";
+import PrintUserState from "./PrintUserState";
 
 
 
@@ -34,13 +34,14 @@ import { loadMapApi } from './components/utils/GoogleMapsUtils';
 
 function App() {
 
-  
 
   
   
   return (
     <div className="App">
-      <LoginScreen />
+      <SignUp />
+      
+
     </div>
   );
   

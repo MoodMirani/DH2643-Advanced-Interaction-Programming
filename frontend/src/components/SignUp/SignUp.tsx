@@ -36,6 +36,17 @@ export default function SignUp() {
   .catch(function(error) {
     console.log(error);
   });
+
+  const print = () => {
+    console.log(firstname)
+    console.log(lastname)
+    console.log(inputemail)
+    console.log(inputpassword)
+  }
+
+  const storeUser = () => {
+
+  }
   
   
   
@@ -101,12 +112,12 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className="submit"
-            onClick={addUser}
+            onClick={storeUser}
             style={{marginTop: "15px", marginBottom: "15px"}}
             >
             Sign Up
