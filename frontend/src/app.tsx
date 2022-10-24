@@ -39,8 +39,8 @@ function App() {
   
   return (
     <div className="App">
-      <SignUp />
       
+      <SignUp/>
 
     </div>
   );
@@ -59,7 +59,6 @@ root.render(
           <Grid xs={3}>
                     <NavBar/>
           </Grid>
-
           <Grid xs={9}>
             <Routes>
               <Route path="/" element={<App />} />

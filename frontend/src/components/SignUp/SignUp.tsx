@@ -6,7 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Icon from '@mui/material/Icon';
@@ -14,8 +13,8 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import axios from "axios";
-import './login.scss';
-
+import './SignUp.scss';
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const [firstname, setFirstName] = useState('');
@@ -52,9 +51,10 @@ export default function SignUp() {
   
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div className="signInContainer">
+    <Container component="main" maxWidth="xs" style={{marginTop: "100px"}}>
       <CssBaseline />
-      <div className="paper">
+      <div className="paper" style={{backgroundColor: "#ffffff", borderRadius: "15px", padding: "15px"}}>
         <Typography component="h1" variant="h2" style={{marginBottom: "10px", textAlign: "center"}}>
           Sign up
         </Typography>
@@ -111,6 +111,9 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
+          <Link to="/profile">
+
+          </Link>
           <Button
             type="button"
             fullWidth
@@ -119,18 +122,23 @@ export default function SignUp() {
             className="submit"
             onClick={storeUser}
             style={{marginTop: "15px", marginBottom: "15px"}}
+            component={Link}
+            to={'/profile'}
             >
+            
             Sign Up
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/SignUp">
+              <Link to="/SignUp">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
+      
     </Container>
+    </div>
   );
 }
