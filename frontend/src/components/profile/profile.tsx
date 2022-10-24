@@ -29,11 +29,11 @@ export default function Profile(){
             </div> 
             
         <div>
-            <Grid container spacing={4} direction="column">
+            <Grid container spacing={2} direction="column">
                 <Grid xs={4}>
                     <div>
                         <Button>
-                        <Card sx={{width: 600, height: 190}} style={{backgroundColor: "#EF6767"}}>
+                        <Card sx={{width: 600, height: 100}} style={{backgroundColor: "#EF6767"}}>
                         <CardContent>
                         <Typography sx={{ fontSize: 24 }} gutterBottom style={{color:"white"}}>
                         My Patches
@@ -52,7 +52,7 @@ export default function Profile(){
                 <Grid xs={4}>
                     <div>
                         <Button>
-                        <Card sx={{width: 600, height: 190}} style={{backgroundColor: "#EF6767"}}>
+                        <Card sx={{width: 600, height: 100}} style={{backgroundColor: "#EF6767"}}>
                         <CardContent>
                         <Typography sx={{ fontSize: 24 }} gutterBottom style={{color:"white"}}>
                             My Drinks
@@ -71,7 +71,7 @@ export default function Profile(){
                 <Grid xs={4}>
                     <div>
                         <Button>
-                        <Card sx={{width: 600, height: 190}} style={{backgroundColor: "#EF6767"}}>
+                        <Card sx={{width: 600, height: 100}} style={{backgroundColor: "#EF6767"}}>
                         <CardContent>
                         <Typography sx={{ fontSize: 24 }} gutterBottom style={{color:"white"}}>
                             My Visited Pubs

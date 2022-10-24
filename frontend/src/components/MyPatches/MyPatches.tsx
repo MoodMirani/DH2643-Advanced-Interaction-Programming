@@ -15,7 +15,7 @@ export default function MyPatches() {
             <div className="patchHeader">
                 <Typography variant="h2" align="left" style={{marginTop: '25px', marginBottom: '25px'}}>My Patches</Typography>
             </div>
-            <Grid container spacing={5} >
+            <Grid container spacing={2}>
                 <Grid xs={4}>
                     <Card sx={{width: 110, height: 200}} style={{backgroundColor: "#EF6767"}}>
                     <CardContent>

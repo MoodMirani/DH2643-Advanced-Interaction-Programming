@@ -33,15 +33,9 @@ import { loadMapApi } from './components/utils/GoogleMapsUtils';
 
 
 function App() {
-
-
-  
-  
   return (
     <div className="App">
-      
       <SignUp/>
-
     </div>
   );
   
