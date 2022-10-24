@@ -6,15 +6,19 @@ import { Typography } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
 import Grid from '@mui/material/Unstable_Grid2';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+
+
 
 export default function NavBar() {
-
+    const firstName = useAppSelector((state) => state.user.FirstName)
+    const lastName = useAppSelector((state) => state.user.LastName)
     return (
         <div>
         <div className="navBar">
             <div className="navBarHeader">
                 <Typography variant="h4" align="center" style={{paddingTop:30}}>
-                    Hello, Mahmoud!
+                    {"Hello, " + firstName + "!"}
                 </Typography>
             </div>
 
@@ -26,7 +30,7 @@ export default function NavBar() {
                 />
             </div>
             <div className="nameHeader">
-            <Typography variant="h5" align="center" style={{marginTop: 10}}>Mahmoud</Typography>
+            <Typography variant="h5" align="center" style={{marginTop: 10}}>{firstName + " " + lastName}</Typography>
             </div>
             
             <div className="profileButtons">

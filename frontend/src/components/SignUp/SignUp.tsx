@@ -15,18 +15,22 @@ import Container from "@mui/material/Container";
 import axios from "axios";
 import './SignUp.scss';
 import { Link } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { setFirstName, setLastName, setEmail, setPassword } from "../../redux/UserSlice";
 
 export default function SignUp() {
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
+  const [inputfirstname, setInputfirstname] = useState('');
+  const [inputlastname, setInputlastname] = useState('');
   const [inputemail, setInputemail] = useState('');
   const [inputpassword, setInputpassword] = useState('');
+  const dispatch = useAppDispatch();
+
   
 
 
   const addUser = () => axios.post("https://localhost:8080/api/auth/register", {
-    first_name: firstname, 
-    last_name: lastname, 
+    first_name: inputfirstname, 
+    last_name: inputlastname, 
     password: inputemail, 
     email: inputpassword})
   .then(function(response) {
@@ -37,14 +41,17 @@ export default function SignUp() {
   });
 
   const print = () => {
-    console.log(firstname)
-    console.log(lastname)
+    console.log(inputfirstname)
+    console.log(inputlastname)
     console.log(inputemail)
     console.log(inputpassword)
   }
 
   const storeUser = () => {
-
+    dispatch(setFirstName(inputfirstname))
+    dispatch(setLastName(inputlastname))
+    dispatch(setEmail(inputemail))
+    dispatch(setPassword(inputpassword))
   }
   
   
@@ -62,7 +69,7 @@ export default function SignUp() {
           <Grid container spacing={2} >
             <Grid item xs={12} sm={6} >
               <TextField
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setInputfirstname(e.target.value)}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -75,7 +82,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e) => setInputlastname(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
