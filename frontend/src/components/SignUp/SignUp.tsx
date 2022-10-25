@@ -127,7 +127,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className="submit"
-            onClick={storeUser}
+            onClick={addUser}
             style={{marginTop: "15px", marginBottom: "15px"}}
             component={Link}
             to={'/profile'}

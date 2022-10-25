@@ -35,7 +35,7 @@ import { loadMapApi } from './components/utils/GoogleMapsUtils';
 function App() {
   return (
     <div className="App">
-      <SignUp/>
+      This is where the map should have been
     </div>
   );
   

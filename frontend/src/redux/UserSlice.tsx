@@ -30,6 +30,10 @@ const userSlice = createSlice({
     setPassword: (state, action: PayloadAction<string>) => {
         state.Password = action.payload
     },
+    addPupVisit: (state, action: PayloadAction<string>) => {
+      // "mutate" the array by calling push()
+      // state.pubVisits.push(action.payload)
+    },
   },
   extraReducers: {},
 })
