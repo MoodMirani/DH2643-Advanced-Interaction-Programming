@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 app.use(cookieParser());
-express.static.mime.define({'text/javascript': ['js']})
+express.static.mime.define({ "text/javascript": ["js"] });
 app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
 app.use(express.json());
 app.use("/api/auth", authRouter); // Handles /api/auth
@@ -79,7 +79,7 @@ app.get("/profile", userAuth, (req: express.Request, res: express.Response) => {
   res.send("Logged-in user route.");
 });
 
-app.post(
+app.put(
   "/api/pub_visits",
   userAuth,
   async (req: express.Request, res: express.Response) => {
