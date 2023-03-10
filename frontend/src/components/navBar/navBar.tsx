@@ -1,5 +1,4 @@
 import React from "react";
-import Button from '@mui/material/Button'
 import './navBar.scss'
 import Box from '@mui/material/Box';
 import { Typography } from "@mui/material";
@@ -7,12 +6,17 @@ import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
 import Grid from '@mui/material/Unstable_Grid2';
 import { useAppSelector, useAppDispatch } from '../../hooks';
+import Button from "../button/Button";
 
 
 
 export default function NavBar() {
     const firstName = useAppSelector((state) => state.user.FirstName)
     const lastName = useAppSelector((state) => state.user.LastName)
+
+
+
+
     return (
         <div>
         <div className="navBar">
@@ -34,51 +38,16 @@ export default function NavBar() {
             </div>
             
             <div className="profileButtons">
-                <Grid container rowSpacing={1} columnSpacing={{xs: 1, sm: 2, md: 3}}>
-                    <Grid xs={6}>
-                    <Box textAlign='center'>
-                        <Button variant="contained"  component={Link} to={'/profile'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10}} >Profile</Button>
-                    </Box>
-                    </Grid>
-                    <Grid xs={6}>
-                    <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/AddVisit'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Add Visit</Button>
-                    </Box>
-                    </Grid>
-                    <Grid xs={6}>
-                    <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/MyPatches'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Patches</Button>
-                    </Box>
-                    </Grid>
-                    <Grid xs={6}>
-                        <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/MyDrinks'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Drinks</Button>
-                        </Box>
-                    </Grid>
-                    <Grid xs={6}>
-                        <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/MyVisitedPubs'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Visited Pubs</Button>
-                        </Box>
-                    </Grid>
-                    <Grid xs={6}>
-                        <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/Map'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Pub Map</Button>
-                        </Box>
-                    </Grid>
-                    <Grid xs={6}>
-                        <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/LoginScreen'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Login</Button>
-                        </Box>
-                    </Grid>
-                    <Grid xs={6}>
-                        <Box textAlign='center'>
-                        <Button variant="contained" component={Link} to={'/SignUp'} style={{backgroundColor: "#EF6767", width:"150px", marginTop:10, marginBottom:10}}>Sign Up</Button>
-                        </Box>
-                    </Grid> 
-                </Grid>
-            </div>
-            <div className="mapButton">
-               
+
+                        <Button buttonName="Profile"/>
+                        <Button buttonName="Add Visit"/>
+                        <Button buttonName="Patches"/>
+                        <Button buttonName="Drinks"/>
+                        <Button buttonName="Pub Map"/>
+                        <Button buttonName="Login"/>
+                        <Button buttonName="Sign Up"/>
+             
+                
             </div>
         </div>
         </div>

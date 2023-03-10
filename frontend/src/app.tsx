@@ -4,14 +4,10 @@ import ReactDOM from "react-dom";
 import { getAPI } from "./webAPI/webAPI";
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
-import { Counter } from './components/counter/counter';
 import NavBar from "./components/navBar/navBar";
 import Grid from '@mui/material/Unstable_Grid2';
 import './app.scss';
-import Profile from "./components/Profile/Profile";
 import AddVisit from "./components/addVisit/addVisit";
-import MyPatches from "./components/MyPatches/MyPatches";
-import MyDrinks from "./components/MyDrinks/MyDrinks";
 import MyVisitedPubs from "./components/MyVisitedPubs/MyVisitedPubs";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -19,8 +15,6 @@ import Expenses from "./pages/expenses";
 import Invoices from "./pages/invoices";
 import { createRoot } from "react-dom/client";
 
-import LoginScreen from "./components/login/login";
-import SignUp from "./components/SignUp/SignUp";
 import { useAppSelector, useAppDispatch } from './hooks'
 import { setFirstName } from "./redux/UserSlice";
 import PrintUserState from "./PrintUserState";
@@ -46,9 +40,15 @@ const root = createRoot(container!);
 
 root.render(
   <div className="mainContainer ">
+   
 
     <Provider store ={store}>
+    
+
       <BrowserRouter>
+      <NavBar/>
+      -<MyVisitedPubs />
+      {/*
         <Grid container spacing={2} height={"100%"}>
           <Grid xs={3}>
                     <NavBar/>
@@ -67,7 +67,9 @@ root.render(
             </Routes>
           </Grid>
         </Grid>
+        */}
       </BrowserRouter>
+
     </Provider>
   </div>
 );
