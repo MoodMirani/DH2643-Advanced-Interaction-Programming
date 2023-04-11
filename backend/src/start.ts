@@ -13,6 +13,7 @@ import authRouter from "./auth/Route";
 import cookieParser from "cookie-parser";
 import { userAuth } from "./auth/Auth";
 import { User, userSchema, PubVisit } from "./models/User";
+import { Db } from "mongodb";
 //import { PubVisitSchema, PubVisitModel, PubVisit } from "./models/PubVisit";
 
 connectDB();
@@ -147,6 +148,21 @@ router.get("/bars/:id", (req: express.Request, res: express.Response) => {
 router.get("/bars", (req: express.Request, res: express.Response) => {
   var bars = {}; //Return all bars from DB.
   res.status(200).send(bars);
+});
+ 
+router.get("/api/pub_visits", async (req: express.Request, res: express.Response) => {
+  //let collection = await User.
+  var results = await User.find({}, {"pub_visits": 1}).limit(50); //Return all bars from DB.
+  //var temp = (await pubVisitsCursor).forEach((value) => JSON.stringify(value))
+  res.status(200).send(results);
+});
+
+//Pub visits for a particular user id (here just called id):
+router.get("/api/pub_visits/:id", (req: express.Request, res: express.Response) => {
+  var pubVisits = { id: 4, name: "Meta", businessHours: "4 pm - 8 pm" }; //Here we'd like to get this from DB.
+  //var barId = req.params.id;
+  //By using req.params.id to get the provided id.
+  res.status(200).send(pubVisits);
 });
 
 router.get("/drinks/:id", (req: express.Request, res: express.Response) => {
