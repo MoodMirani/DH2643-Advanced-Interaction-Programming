@@ -13,6 +13,7 @@ import authRouter from "./auth/Route";
 import cookieParser from "cookie-parser";
 import { userAuth } from "./auth/Auth";
 import { User, userSchema, PubVisit } from "./models/User";
+import { Db, ObjectId } from "mongodb";
 //import { PubVisitSchema, PubVisitModel, PubVisit } from "./models/PubVisit";
 
 connectDB();
@@ -40,7 +41,7 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 app.use(cookieParser());
-express.static.mime.define({'text/javascript': ['js']})
+express.static.mime.define({ "text/javascript": ["js"] });
 app.use(express.static(path.join(__dirname, "../../dist"))); //Where to find the statically served content.
 app.use(express.json());
 app.use("/api/auth", authRouter); // Handles /api/auth
@@ -79,7 +80,7 @@ app.get("/profile", userAuth, (req: express.Request, res: express.Response) => {
   res.send("Logged-in user route.");
 });
 
-app.post(
+app.put(
   "/api/pub_visits",
   userAuth,
   async (req: express.Request, res: express.Response) => {
@@ -147,6 +148,18 @@ router.get("/bars/:id", (req: express.Request, res: express.Response) => {
 router.get("/bars", (req: express.Request, res: express.Response) => {
   var bars = {}; //Return all bars from DB.
   res.status(200).send(bars);
+});
+ 
+router.get("/api/pub_visits", async (req: express.Request, res: express.Response) => {
+  var results = await User.find({}, {"pub_visits": 1}).limit(50);
+  res.status(200).send(results);
+});
+
+//Pub visits for a particular user id (here just called id), by using 
+//req.params.id to get the provided id.
+router.get("/api/pub_visits/:id", async (req: express.Request, res: express.Response) => {
+  var pubVisitsForUser = await User.find({_id: req.params.id}, {"pub_visits": 1}).limit(50); 
+  res.status(200).send(pubVisitsForUser);
 });
 
 router.get("/drinks/:id", (req: express.Request, res: express.Response) => {
