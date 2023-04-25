@@ -1,6 +1,6 @@
 import React from 'react';
 import "./MyVisitedPubs.scss";
-import PubCard from '../card/PubCard';
+import PubCard from '../../components/card/PubCard';
 
 
 export default function MyVisitedPubs() {

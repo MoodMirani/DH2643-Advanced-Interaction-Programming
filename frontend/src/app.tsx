@@ -1,77 +1,43 @@
-import React, { useState } from "react";
-
-import ReactDOM from "react-dom";
-import { getAPI } from "./webAPI/webAPI";
-import { store } from './redux/store';
-import { Provider } from 'react-redux';
+import React from "react";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 import NavBar from "./components/navBar/navBar";
-import Grid from '@mui/material/Unstable_Grid2';
-import './app.scss';
-import AddVisit from "./components/addVisit/addVisit";
-import MyVisitedPubs from "./components/MyVisitedPubs/MyVisitedPubs";
-import { render } from "react-dom";
+import "./app.scss";
+import MyVisitedPubs from "./pages/MyVisitedPubs/MyVisitedPubsView";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Expenses from "./pages/expenses";
-import Invoices from "./pages/invoices";
+
 import { createRoot } from "react-dom/client";
 
-import { useAppSelector, useAppDispatch } from './hooks'
-import { setFirstName } from "./redux/UserSlice";
-import PrintUserState from "./PrintUserState";
+import { useAppSelector } from "./hooks/hooks";
 
-
-
-
-import { loadMapApi } from './components/utils/GoogleMapsUtils';
-//import Map from "./components/Map/Map";
-
+import { loadMapApi } from "./components/utils/GoogleMapsUtils";
+import RegisterPageView from "./pages/register/registerPageView";
 
 function App() {
+  const registered = useAppSelector((state) => state.user.registered);
+
   return (
-    <div className="App">
-      This is where the map should have been
+    <div className="mainContainer ">
+      {registered ? (
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<MyVisitedPubs />} />
+            <Route path="visitedPubs" element={<MyVisitedPubs />} />
+          </Routes>
+        </BrowserRouter>
+      ) : (
+        <RegisterPageView />
+      )}
     </div>
   );
-  
 }
 
 const container = document.getElementById("app");
 const root = createRoot(container!);
 
 root.render(
-  <div className="mainContainer ">
-   
-
-    <Provider store ={store}>
-    
-
-      <BrowserRouter>
-      <NavBar/>
-      -<MyVisitedPubs />
-      {/*
-        <Grid container spacing={2} height={"100%"}>
-          <Grid xs={3}>
-                    <NavBar/>
-          </Grid>
-          <Grid xs={9}>
-            <Routes>
-              <Route path="/" element={<App />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="AddVisit" element={<AddVisit />} />
-              <Route path="MyPatches" element={<MyPatches />} />
-              <Route path="MyDrinks" element={<MyDrinks />} />
-              <Route path="MyVisitedPubs" element={<MyVisitedPubs />} />
-              <Route path="LoginScreen" element={<LoginScreen />} />
-              <Route path="SignUp" element={<SignUp />} />
-              <Route path="Map" element={<Profile/>}/>
-            </Routes>
-          </Grid>
-        </Grid>
-        */}
-      </BrowserRouter>
-
-    </Provider>
-  </div>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
-
-// <Link to="/expenses">Expenses</Link>

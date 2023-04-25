@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import "./SignUp.scss";
-import SignUpView from "./SignUpView";
 import { useAppDispatch } from "../../hooks";
 import {
   setFirstName,
@@ -47,13 +46,5 @@ export default function SignUp() {
     dispatch(setPassword(inputpassword));
   };
 
-  return (
-    <SignUpView
-      setFirstNameCB={setInputfirstname}
-      setLastNameCB={setInputlastname}
-      setInputemailCB={setInputemail}
-      setInputpasswordCB={setInputpassword}
-      addUserCB={addUser}
-    />
-  );
+  return <div>hello</div>;
 }
