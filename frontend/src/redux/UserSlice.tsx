@@ -7,7 +7,7 @@ interface UserState {
   LastName: string;
   Email: string;
   Password: string;
-  pubVisits: string[];
+  pubVisits: object[];
   registered: boolean;
   biography: string;
 }
@@ -38,7 +38,7 @@ const userSlice = createSlice({
     setPassword: (state, action: PayloadAction<string>) => {
       state.Password = action.payload;
     },
-    addPubVisit: (state, action: PayloadAction<string>) => {
+    addPubVisit: (state, action: PayloadAction<object>) => {
       state.pubVisits.push(action.payload);
     },
     setRegistered: (state, action: PayloadAction<boolean>) => {
