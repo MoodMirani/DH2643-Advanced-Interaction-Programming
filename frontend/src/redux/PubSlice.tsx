@@ -3,7 +3,7 @@ import type { RootState } from "./store";
 
 export interface PubVisit {
   pubName: string;
-  visitDate: Date;
+  visitDate: string;
   review: number;
   comment: string;
 }
@@ -13,20 +13,7 @@ interface PubVisitState {
 }
 
 export const initialState: PubVisitState = {
-  pubVisits: [
-    {
-      pubName: "Sektionen för Medieteknik",
-      visitDate: new Date(),
-      review: 7,
-      comment: "I loved the Öl & Bulle concept",
-    },
-    {
-      pubName: "Sektionen för Medieteknik",
-      visitDate: new Date(),
-      review: 7,
-      comment: "I loved the Öl & Bulle concept",
-    },
-  ],
+  pubVisits: [],
 };
 
 const pubVisitSlice = createSlice({
@@ -38,7 +25,7 @@ const pubVisitSlice = createSlice({
     },
     deletePubVisit: (
       state,
-      action: PayloadAction<{ pubName: string; visitDate: Date }>
+      action: PayloadAction<{ pubName: string; visitDate: string }>
     ) => {
       state.pubVisits = state.pubVisits.filter(
         (visit) =>

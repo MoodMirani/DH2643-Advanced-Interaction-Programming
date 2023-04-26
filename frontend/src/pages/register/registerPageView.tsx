@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./registerPageView.scss";
-import InputField from "../../components/input/InputField";
+import InputField from "../../components/input/InputFieldView";
 import { useAppDispatch } from "../../hooks/hooks";
 import {
   setFirstName,

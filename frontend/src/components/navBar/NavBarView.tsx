@@ -1,17 +1,23 @@
-import React from "react";
+// NavBarView.tsx
+import React, { FC } from "react";
 import "./navBar.scss";
-import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
-import Button from "../button/Button";
+import Button from "../button/ButtonView";
 
-export default function NavBar() {
-  const firstName = useAppSelector((state) => state.user.FirstName);
-  const lastName = useAppSelector((state) => state.user.LastName);
-  const biography = useAppSelector((state) => state.user.biography);
-  const profilePicLink =
-    "https://t4.ftcdn.net/jpg/05/12/20/15/360_F_512201553_ulIyOQmnFbKG3q4fwpoxLnF0r9VLGeWK.jpg";
+interface NavBarViewProps {
+  firstName: string;
+  lastName: string;
+  biography: string;
+  profilePicLink: string;
+  handleclick: () => void;
+}
 
-  const handleclick = () => {};
-
+const NavBarView: FC<NavBarViewProps> = ({
+  firstName,
+  lastName,
+  biography,
+  profilePicLink,
+  handleclick,
+}) => {
   return (
     <div>
       <div className="navBar">
@@ -28,4 +34,6 @@ export default function NavBar() {
       </div>
     </div>
   );
-}
+};
+
+export default NavBarView;

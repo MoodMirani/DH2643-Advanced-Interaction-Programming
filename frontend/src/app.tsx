@@ -1,9 +1,9 @@
 import React from "react";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import NavBar from "./components/navBar/navBar";
+import NavBar from "./components/navBar/navBarPresenter";
 import "./app.scss";
-import MyVisitedPubs from "./pages/MyVisitedPubs/MyVisitedPubsView";
+import MyVisitedPubsPresenter from "./pages/MyVisitedPubs/MyVisitedPubsPresenter";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import { createRoot } from "react-dom/client";
@@ -12,20 +12,20 @@ import { useAppSelector } from "./hooks/hooks";
 
 import { loadMapApi } from "./components/utils/GoogleMapsUtils";
 import RegisterPageView from "./pages/register/registerPageView";
-import AddPubVisitPage from "./pages/addPubVisit/AddPubVisitPage";
+import AddPubVisitPresenter from "./pages/addPubVisit/AddPubVisitPresenter";
 
 function App() {
   const registered = useAppSelector((state) => state.user.registered);
 
   return (
     <div className="mainContainer ">
-      {true ? (
+      {registered ? (
         <BrowserRouter>
           <NavBar />
           <Routes>
-            <Route path="/" element={<MyVisitedPubs />} />
-            <Route path="visitedPubs" element={<MyVisitedPubs />} />
-            <Route path="addPubVisit" element={<AddPubVisitPage />} />
+            <Route path="/" element={<MyVisitedPubsPresenter />} />
+            <Route path="visitedPubs" element={<MyVisitedPubsPresenter />} />
+            <Route path="addPubVisit" element={<AddPubVisitPresenter />} />
           </Routes>
         </BrowserRouter>
       ) : (

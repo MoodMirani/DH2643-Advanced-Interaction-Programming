@@ -4,7 +4,7 @@ import "./PubCard.scss";
 
 interface PubCardProps {
   pubName?: string;
-  visitDate?: Date;
+  visitDate?: string;
   review?: number;
   comment?: string;
 }
@@ -15,12 +15,15 @@ const PubCard: React.FC<PubCardProps> = ({
   review,
   comment,
 }) => {
-  console.log(review);
   return (
     <div className="card">
       <div className="card-content">
         <h3 className="card-title">{pubName}</h3>
-        <h4>Review: {review}/10</h4>
+        <div className="review-visited">
+          <h4>Review: {review}/10</h4>
+          <h4>Visited: {visitDate}</h4>
+        </div>
+
         <p className="card-text">{comment}</p>
       </div>
     </div>
