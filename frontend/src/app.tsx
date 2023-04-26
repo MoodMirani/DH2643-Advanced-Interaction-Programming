@@ -11,7 +11,7 @@ import { createRoot } from "react-dom/client";
 import { useAppSelector } from "./hooks/hooks";
 
 import { loadMapApi } from "./components/utils/GoogleMapsUtils";
-import RegisterPageView from "./pages/register/registerPageView";
+import RegisterPagePresenter from "./pages/register/RegisterPagePresenter";
 import AddPubVisitPresenter from "./pages/addPubVisit/AddPubVisitPresenter";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       ) : (
-        <RegisterPageView />
+        <RegisterPagePresenter />
       )}
     </div>
   );

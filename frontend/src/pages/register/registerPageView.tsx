@@ -1,49 +1,31 @@
-import React, { useState } from "react";
-import "./registerPageView.scss";
+// RegisterPageView.tsx
+import React, { FC } from "react";
+import "./RegisterPage.scss";
 import InputField from "../../components/input/InputFieldView";
-import { useAppDispatch } from "../../hooks/hooks";
-import {
-  setFirstName,
-  setLastName,
-  setBiography,
-  setRegistered,
-} from "../../redux/UserSlice";
-// import { Button } from "../../components/Button";
 
-const RegisterPageView = () => {
-  const [FirstNameInput, setFirstNameInput] = useState("");
-  const [LastNameInput, setLastNameInput] = useState("");
-  const [biographyInput, setbiographyInput] = useState("");
-  const dispatch = useAppDispatch();
-  const imageURL =
-    "https://static.vecteezy.com/system/resources/previews/009/248/892/non_2x/bar-or-pub-at-evening-with-alcohol-drinks-bottles-bartender-table-interior-and-chairs-in-indoor-room-in-flat-cartoon-illustration-vector.jpg";
+interface RegisterPageViewProps {
+  FirstNameInput: string;
+  LastNameInput: string;
+  biographyInput: string;
+  introText: string;
+  handleFirstNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleLastNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handlebiographyChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmitClick: () => void;
+  imageURL: string;
+}
 
-  // onChange
-  const handleFirstNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setFirstNameInput(event.target.value);
-  };
-
-  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastNameInput(event.target.value);
-  };
-
-  const handlebiographyChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setbiographyInput(event.target.value);
-  };
-
-  const handleSubmitClick = () => {
-    dispatch(setFirstName(FirstNameInput));
-    dispatch(setLastName(LastNameInput));
-    dispatch(setBiography(biographyInput));
-    dispatch(setRegistered(true));
-  };
-  const introText =
-    "Welcome to our pub visit logging application! By logging your pub visits, you can keep track of your favorite pubs and review your pub experiences. Before you start logging your pub visits we kindly ask you to fill out your profile information. ";
-
+const RegisterPageView: FC<RegisterPageViewProps> = ({
+  FirstNameInput,
+  LastNameInput,
+  biographyInput,
+  introText,
+  handleFirstNameChange,
+  handleLastNameChange,
+  handlebiographyChange,
+  handleSubmitClick,
+  imageURL,
+}) => {
   return (
     <div className="registerPage">
       <div className="registerContainer">
