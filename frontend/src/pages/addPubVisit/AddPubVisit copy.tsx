@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { addPubVisit } from "../../redux/UserSlice";
 
 interface PubVisit {
   pubName: string;
@@ -7,7 +8,7 @@ interface PubVisit {
   comment: string;
 }
 
-const PubReviewPage: React.FC = () => {
+const Wrong: React.FC = () => {
   const [pubName, setPubName] = useState("");
   const [visitDate, setVisitDate] = useState<Date | null>(null);
   const [rating, setRating] = useState<number | null>(null);
@@ -69,4 +70,4 @@ const PubReviewPage: React.FC = () => {
   );
 };
 
-export default PubReviewPage;
+export default Wrong;

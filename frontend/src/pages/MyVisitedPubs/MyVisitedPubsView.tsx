@@ -2,19 +2,24 @@ import React from "react";
 import "./MyVisitedPubs.scss";
 import PubCard from "../../components/card/PubCard";
 import pubVisits from "../../assets/mock/pubvisits.json";
+import PageTitle from "../../components/pageTitle/pagetitle";
+import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 
 const MyVisitedPubs = () => {
-  const visits = pubVisits.pubVisits;
+  const visits = useAppSelector((state) => state.pubVisit.pubVisits);
+  console.log({ visits });
 
   return (
-    <div>
-      <div className="visitedPubHeader">My Visited Pubs</div>
+    <div className="visitedPubsPageContainer">
+      <PageTitle title="My Visited Pubs" />
 
       <div className="pubsContainer">
         {visits.map((visit) => (
           <PubCard
             pubName={visit.pubName}
-            pubReview={visit.pubReview}
+            visitDate={visit.visitDate}
+            review={visit.review}
+            comment={visit.comment}
           ></PubCard>
         ))}
       </div>

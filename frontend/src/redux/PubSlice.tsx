@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 
-interface PubVisit {
+export interface PubVisit {
   pubName: string;
   visitDate: Date;
   review: number;
@@ -12,8 +12,21 @@ interface PubVisitState {
   pubVisits: PubVisit[];
 }
 
-const initialState: PubVisitState = {
-  pubVisits: [],
+export const initialState: PubVisitState = {
+  pubVisits: [
+    {
+      pubName: "Sektionen för Medieteknik",
+      visitDate: new Date(),
+      review: 7,
+      comment: "I loved the Öl & Bulle concept",
+    },
+    {
+      pubName: "Sektionen för Medieteknik",
+      visitDate: new Date(),
+      review: 7,
+      comment: "I loved the Öl & Bulle concept",
+    },
+  ],
 };
 
 const pubVisitSlice = createSlice({

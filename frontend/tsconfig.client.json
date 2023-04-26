@@ -6,7 +6,8 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": false
   },
   "exclude": ["node_modules"]
 }

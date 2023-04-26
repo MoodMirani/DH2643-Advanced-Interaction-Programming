@@ -23,6 +23,7 @@ export default function NavBar() {
 
         <div className="profileButtons">
           <Button buttonName="My Visited Pubs" linkUrl="visitedPubs" />
+          <Button buttonName="Add a pubvisit" linkUrl="addPubVisit" />
         </div>
       </div>
     </div>
