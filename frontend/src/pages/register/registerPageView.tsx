@@ -62,6 +62,7 @@ const RegisterPageView = () => {
             onChange={handleLastNameChange}
           />
         </div>
+      
         <InputField
           label={"Short presentation of yourself"}
           name="biography"
