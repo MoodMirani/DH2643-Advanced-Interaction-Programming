@@ -5,7 +5,9 @@
     "outDir": "../dist",
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": false
   },
   "exclude": ["node_modules"]
 }

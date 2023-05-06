@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "@types/google.maps": "^3.50.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
   }
 }

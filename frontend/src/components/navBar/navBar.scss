@@ -1,16 +1,20 @@
 .navBar {
-    height: 100%; /* 100% Full-height */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #5970C1;
-    width: 300px;
-  }
+  height: 100%; /* 100% Full-height */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #5970c1;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
 
 .profileButtons {
+  margin-top: 30px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
 }
 
 .navBarHeader {
@@ -19,10 +23,27 @@
 
 .nameHeader {
   color: white;
+  font-size: 22px;
+  font-weight: 600;
 }
 
-.avatar {
-  margin-left: 28%;
+.circular-image {
   margin-top: 20%;
-  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.circular-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.biography {
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
 }

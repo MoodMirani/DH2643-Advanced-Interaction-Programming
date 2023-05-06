@@ -1,17 +1,44 @@
-.cardContainer{
-    background-color: #EF6767;
-    color: white;
-    padding: 10px;
-    max-height: 70px;
-    border-radius: 10px;
-    margin: 10px;
-    font-family:Arial, Helvetica, sans-serif;
-    box-shadow: 1px 1px #b5b5b5;
-    
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.pubName {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 5px;
+.card:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.card-title {
+  margin: 0;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.card-text {
+  margin: 0;
+  font-size: 16px;
+  color: #777;
+}
+
+.review-visited {
+  display: flex;
+  justify-content: space-between;
 }
