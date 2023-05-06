@@ -11,7 +11,7 @@ export async function register(
   res: express.Response,
   next: express.NextFunction //Should we not call next somewhere below?
 ) {
-  const { first_name, last_name, email, password } = req.body;
+  const { first_name, last_name, email, password, bio } = req.body;
   if (password.length < 8) {
     return res
       .status(400)
@@ -24,6 +24,7 @@ export async function register(
         last_name,
         email,
         password: hash,
+        bio,
       }).then((user) => {
         const maxAge = 4 * 50 * 50;
         const token = jwt.sign({ id: user._id, email }, jwtSecret, {
