@@ -1,20 +1,16 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import bodyParser from "body-parser";
 import express from "express";
 import path from "path"; //path is a native Node package.
 import https from "https"; //Me too.
 import fs from "fs"; //file system
 import cors from "cors";
-import mongoose from "mongoose";
 import config from "./config/config";
 import connectDB from "./db";
 import authRouter from "./auth/Route";
 import cookieParser from "cookie-parser";
 import { userAuth } from "./auth/Auth";
-import { User, userSchema, PubVisit } from "./models/User";
-import { Db, ObjectId } from "mongodb";
-//import { PubVisitSchema, PubVisitModel, PubVisit } from "./models/PubVisit";
+import { User } from "./models/User";
 
 connectDB();
 const app: express.Application = express(); //Our 'app' helps us set up our server.
@@ -48,7 +44,6 @@ app.use("/api/auth", authRouter); // Handles /api/auth
 app.use(router);
 
 //Middleware are functions that will be run prior to getting to our routes.
-
 /*  To use authentication on the main route, we'd do something like */
 //app.use(
 //  "/",
@@ -68,7 +63,7 @@ app.use(router);
 //app.use(bodyParser.json());
 //app.use(express.json()); //See if this one is necessary.
 /* Note that we need to brew install 'mkcert' and generate certificates 
-in order for the https to work during developent. 
+in order for the https to work during development. 
 */
 
 const options = {
@@ -84,28 +79,24 @@ app.put(
   "/api/pub_visits",
   userAuth,
   async (req: express.Request, res: express.Response) => {
-    const { user_id, pub, drink, patch } = req.body;
-    if (pub.length < 1) {
+    const { user_id, pubName, visitDate, review, comment } = req.body;
+    if (pubName.length < 1) {
       return res
         .status(400)
         .send({ message: "Please fill in a pub name longer than zero." });
     }
     //Ok, now we need to find the person with the person_id and insert a new PubVisit
     //into it's pub_visits array.
-    const tempPubVisit = { pub: pub, drink: drink, patch: patch };
+    const visitDateObject = new Date(visitDate);
+    const tempPubVisit = { pubName, visitDateObject, review, comment };
     User.updateOne(
       { _id: user_id },
       { $push: { pub_visits: tempPubVisit } }
-    ).then((something) => {
+    ).then(() => {
       res
         .status(201)
         .send({ message: "Pub visit added.", addedPubVisit: tempPubVisit });
     });
-    //const query = { _id: user_id };
-    //const updateDocument = { $push: { pub_visits: { pub, drink, patch } } };
-    //const result = await UserModel.updateOne(query, updateDocument);
-    //await UserModel.findByIdAndUpdate(user_id, tempUser);
-    //res.status(201).send({ message: "Pub visit added." /*, temp*/ });
   }
 );
 
@@ -114,6 +105,7 @@ app.put(
 //   res.redirect("/");
 // });
 
+//Not sure what the idea was behind the below function, perhaps it's not needed.
 app.get("/", (req: express.Request, res: express.Response) => {
   const htmlFile = path.join(__dirname, "../../dist/index.html");
   res
