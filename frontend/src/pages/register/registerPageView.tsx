@@ -8,10 +8,16 @@ interface RegisterPageViewProps {
   FirstNameInput: string;
   LastNameInput: string;
   biographyInput: string;
+  EmailInput: string;
+  PasswordInput: string;
   introText: string;
   handleFirstNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleLastNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handlebiographyChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEmailInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePasswordInputChange: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   handleSubmitClick: () => void;
   imageURL: string;
 }
@@ -20,10 +26,14 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
   FirstNameInput,
   LastNameInput,
   biographyInput,
+  EmailInput,
+  PasswordInput,
   introText,
   handleFirstNameChange,
   handleLastNameChange,
   handlebiographyChange,
+  handleEmailInputChange,
+  handlePasswordInputChange,
   handleSubmitClick,
   imageURL,
 }) => {
@@ -42,6 +52,18 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
             label={"Last Name"}
             name="lastName"
             onChange={handleLastNameChange}
+          />
+        </div>
+        <div className="userName">
+          <InputField
+            label={"Email"}
+            name="email"
+            onChange={handleEmailInputChange}
+          />
+          <InputField
+            label={"Password"}
+            name="password"
+            onChange={handlePasswordInputChange}
           />
         </div>
         <InputField
