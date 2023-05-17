@@ -2,6 +2,7 @@
 import React, { FC } from "react";
 import "./RegisterPage.scss";
 import InputField from "../../components/input/InputFieldView";
+import Button from "../../components/button/ButtonView";
 
 interface RegisterPageViewProps {
   FirstNameInput: string;
@@ -31,7 +32,6 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
       <div className="registerContainer">
         <img src={imageURL} alt="My Image" />
         <p className="introText">{introText}</p>
-
         <div className="userName">
           <InputField
             label={"First Name"}
@@ -44,14 +44,19 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
             onChange={handleLastNameChange}
           />
         </div>
-      
         <InputField
           label={"Short presentation of yourself"}
           name="biography"
           onChange={handlebiographyChange}
         />
         <div className="submitButton" onClick={handleSubmitClick}>
-          Submit
+          Register
+        </div>
+        <div className="submitButton">
+          <Button
+            buttonName="or log in to an existing account"
+            linkUrl="/login"
+          />
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import {
   setRegistered,
 } from "../../redux/UserSlice";
 import RegisterPageView from "./RegisterPageView";
+import axios from "axios";
 
 const RegisterPagePresenter = () => {
   const [FirstNameInput, setFirstNameInput] = useState("");
@@ -34,11 +35,28 @@ const RegisterPagePresenter = () => {
     setbiographyInput(event.target.value);
   };
 
+  const addUser = () =>
+    axios
+      .post("https://localhost:8080/api/auth/register", {
+        first_name: FirstNameInput,
+        last_name: LastNameInput,
+        password: "email2424324@example.com",
+        email: "pass234234word",
+        bio: biographyInput,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   const handleSubmitClick = () => {
     dispatch(setFirstName(FirstNameInput));
     dispatch(setLastName(LastNameInput));
     dispatch(setBiography(biographyInput));
     dispatch(setRegistered(true));
+    addUser();
   };
 
   const introText =

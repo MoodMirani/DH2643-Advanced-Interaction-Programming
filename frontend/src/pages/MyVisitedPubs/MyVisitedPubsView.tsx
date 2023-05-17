@@ -21,8 +21,9 @@ const MyVisitedPubsView: FC<MyVisitedPubsViewProps> = ({ visits }) => {
       <PageTitleView title="My Visited Pubs" />
 
       <div className="pubsContainer">
-        {visits.map((visit) => (
+        {visits.map((visit, index) => (
           <PubCardView
+            key={index}
             pubName={visit.pubName}
             visitDate={visit.visitDate}
             review={visit.review}
