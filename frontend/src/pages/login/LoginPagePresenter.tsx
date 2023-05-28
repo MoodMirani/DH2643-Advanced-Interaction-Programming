@@ -39,7 +39,7 @@ const LoginPagePresenter = () => {
         console.log(error);
       });
 
-  const handleSubmitClick = () => {
+  const handleLoginClick = () => {
     dispatch(setRegistered(true));
     loginUser();
   };
@@ -53,7 +53,7 @@ const LoginPagePresenter = () => {
       introText={introText}
       handleEmailInputChange={handleEmailInputChange}
       handlePasswordInputChange={handlePasswordInputChange}
-      handleSubmitClick={handleSubmitClick}
+      handleLoginClick={handleLoginClick}
       imageURL={imageURL}
     />
   );

@@ -2,6 +2,7 @@
 import React, { FC } from "react";
 import "./LoginPage.scss";
 import InputField from "../../components/input/InputFieldView";
+import RoutingButton from "../../components/button/RoutingButtonView";
 import Button from "../../components/button/ButtonView";
 
 interface LoginPageViewProps {
@@ -12,7 +13,7 @@ interface LoginPageViewProps {
   handlePasswordInputChange: (
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
-  handleSubmitClick: () => void;
+  handleLoginClick: () => void;
   imageURL: string;
 }
 
@@ -22,7 +23,7 @@ const LoginPageView: FC<LoginPageViewProps> = ({
   handleEmailInputChange,
   handlePasswordInputChange,
   introText,
-  handleSubmitClick,
+  handleLoginClick,
   imageURL,
 }) => {
   return (
@@ -40,12 +41,8 @@ const LoginPageView: FC<LoginPageViewProps> = ({
           name="password"
           onChange={handlePasswordInputChange}
         />
-        <div className="submitButton" onClick={handleSubmitClick}>
-          Login
-        </div>
-        <div className="submitButton">
-          <Button buttonName="or register an account" linkUrl="/" />
-        </div>
+        <Button buttonName="Login" handleClick={handleLoginClick} />
+        <RoutingButton buttonName="or register an account" linkUrl="/" />
       </div>
     </div>
   );

@@ -2,7 +2,8 @@
 import React, { FC } from "react";
 import { useAppSelector } from "../../hooks/hooks";
 import NavBarView from "./NavBarView";
-
+import { useAppDispatch } from "../../hooks/hooks";
+import { setRegistered } from "../../redux/UserSlice";
 interface UserState {
   user: {
     FirstName: string;
@@ -15,10 +16,13 @@ const NavBar: FC = () => {
   const firstName = useAppSelector((state: UserState) => state.user.FirstName);
   const lastName = useAppSelector((state: UserState) => state.user.LastName);
   const biography = useAppSelector((state: UserState) => state.user.biography);
+  const dispatch = useAppDispatch();
   const profilePicLink =
     "https://t4.ftcdn.net/jpg/05/12/20/15/360_F_512201553_ulIyOQmnFbKG3q4fwpoxLnF0r9VLGeWK.jpg";
 
-  const handleclick = () => {};
+  const handleLogoutClick = () => {
+    dispatch(setRegistered(false));
+  };
 
   return (
     <NavBarView
@@ -26,7 +30,7 @@ const NavBar: FC = () => {
       lastName={lastName}
       biography={biography}
       profilePicLink={profilePicLink}
-      handleclick={handleclick}
+      handleLogoutClick={handleLogoutClick}
     />
   );
 };

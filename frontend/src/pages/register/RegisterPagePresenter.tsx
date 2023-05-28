@@ -7,7 +7,7 @@ import {
   setBiography,
   setRegistered,
 } from "../../redux/UserSlice";
-import RegisterPageView from "./RegisterPageView";
+import RegisterPageView from "./registerPageView";
 import axios from "axios";
 
 const RegisterPagePresenter = () => {
@@ -65,7 +65,7 @@ const RegisterPagePresenter = () => {
         console.log(error);
       });
 
-  const handleSubmitClick = () => {
+  const handleRegisterClick = () => {
     dispatch(setFirstName(FirstNameInput));
     dispatch(setLastName(LastNameInput));
     dispatch(setBiography(biographyInput));
@@ -89,7 +89,7 @@ const RegisterPagePresenter = () => {
       handlebiographyChange={handlebiographyChange}
       handleEmailInputChange={handleEmailInputChange}
       handlePasswordInputChange={handlePasswordInputChange}
-      handleSubmitClick={handleSubmitClick}
+      handleRegisterClick={handleRegisterClick}
       imageURL={imageURL}
     />
   );

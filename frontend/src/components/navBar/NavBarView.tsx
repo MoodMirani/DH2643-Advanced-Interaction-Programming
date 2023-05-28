@@ -1,6 +1,7 @@
 // NavBarView.tsx
 import React, { FC } from "react";
 import "./navBar.scss";
+import RoutingButton from "../button/RoutingButtonView";
 import Button from "../button/ButtonView";
 
 interface NavBarViewProps {
@@ -8,7 +9,7 @@ interface NavBarViewProps {
   lastName: string;
   biography: string;
   profilePicLink: string;
-  handleclick: () => void;
+  handleLogoutClick: () => void;
 }
 
 const NavBarView: FC<NavBarViewProps> = ({
@@ -16,7 +17,7 @@ const NavBarView: FC<NavBarViewProps> = ({
   lastName,
   biography,
   profilePicLink,
-  handleclick,
+  handleLogoutClick,
 }) => {
   return (
     <div>
@@ -28,8 +29,9 @@ const NavBarView: FC<NavBarViewProps> = ({
         <div className="biography">{biography}</div>
 
         <div className="profileButtons">
-          <Button buttonName="My Visited Pubs" linkUrl="/visitedPubs" />
-          <Button buttonName="Add a pubvisit" linkUrl="/addPubVisit" />
+          <RoutingButton buttonName="My Visited Pubs" linkUrl="/visitedPubs" />
+          <RoutingButton buttonName="Add a pubvisit" linkUrl="/addPubVisit" />
+          <Button buttonName="Log out" handleClick={handleLogoutClick} />
         </div>
       </div>
     </div>

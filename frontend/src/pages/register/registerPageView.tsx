@@ -2,6 +2,7 @@
 import React, { FC } from "react";
 import "./RegisterPage.scss";
 import InputField from "../../components/input/InputFieldView";
+import RoutingButton from "../../components/button/RoutingButtonView";
 import Button from "../../components/button/ButtonView";
 
 interface RegisterPageViewProps {
@@ -18,7 +19,7 @@ interface RegisterPageViewProps {
   handlePasswordInputChange: (
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
-  handleSubmitClick: () => void;
+  handleRegisterClick: () => void;
   imageURL: string;
 }
 
@@ -34,7 +35,7 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
   handlebiographyChange,
   handleEmailInputChange,
   handlePasswordInputChange,
-  handleSubmitClick,
+  handleRegisterClick,
   imageURL,
 }) => {
   return (
@@ -71,15 +72,11 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
           name="biography"
           onChange={handlebiographyChange}
         />
-        <div className="submitButton" onClick={handleSubmitClick}>
-          Register
-        </div>
-        <div className="submitButton">
-          <Button
-            buttonName="or log in to an existing account"
-            linkUrl="/login"
-          />
-        </div>
+        <Button buttonName="Register" handleClick={handleRegisterClick} />
+        <RoutingButton
+          buttonName="or log in to an existing account"
+          linkUrl="/login"
+        />
       </div>
     </div>
   );

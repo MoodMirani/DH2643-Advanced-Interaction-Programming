@@ -30,7 +30,8 @@ const AddPubVisitPresenter: FC = () => {
 
   console.log(values);
 
-  const handleSubmitClick = () =>
+  const handleSubmitClick = () => {
+    dispatch(addPubVisit(values));
     axios
       .put("https://localhost:8080/api/pub_visits", {
         pubName: values.pubName,
@@ -45,6 +46,7 @@ const AddPubVisitPresenter: FC = () => {
       .catch(function (error) {
         console.log(error);
       });
+  };
 
   const introText =
     "This form allows you to log your pub visits, providing essential information about the experience. You can input the name of the pub, the date of the visit, rate your overall experience on a scale of 1 to 10, and add any additional comments you may have. After submitting the form, the pub visit details will be added to your list of visited pubs, making it easy for you to keep track of and review your favorite establishments.";
