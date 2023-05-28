@@ -1,8 +1,8 @@
-// AddPubVisitView.tsx
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import "./AddPubVisit.scss";
 import InputField from "../../components/input/InputFieldView";
 import PageTitleView from "../../components/pagetitle/PageTitleView";
+import Spinner from "../../components/spinner/Spinner";
 
 interface AddPubVisitViewProps {
   values: PubVisit;
@@ -26,6 +26,25 @@ const AddPubVisitView: FC<AddPubVisitViewProps> = ({
   handleCommentChange,
   handleSubmitClick,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleButtonClick = async () => {
+    setIsLoading(true);
+    // Perform the submit logic here
+
+    try {
+      // Simulate an asynchronous action with setTimeout
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Submit completed successfully
+      console.log("Submit successful!");
+    } catch (error) {
+      // Submit failed
+      console.error("Submit failed:", error);
+    }
+
+    setIsLoading(false);
+  };
+
   return (
     <div className="addPubVisitPage">
       <PageTitleView title="Add a pubvisit" />
@@ -54,9 +73,13 @@ const AddPubVisitView: FC<AddPubVisitViewProps> = ({
 
         <div className="commentDesc">Do you have any comments?</div>
         <textarea name="comment" onChange={handleCommentChange} />
-        <div className="submitButton" onClick={handleSubmitClick}>
-          Add Pubvisit
-        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="submitButton" onClick={handleButtonClick}>
+            Add Pubvisit
+          </div>
+        )}
       </div>
     </div>
   );
