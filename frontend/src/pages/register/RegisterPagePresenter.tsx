@@ -52,11 +52,11 @@ const RegisterPagePresenter = () => {
   const addUser = () =>
     axios
       .post("https://localhost:8080/api/auth/register", {
-        first_name: FirstNameInput,
-        last_name: LastNameInput,
-        bio: biographyInput,
-        email: PasswordInput,
-        password: EmailInput,
+        first_name: "Sandra",
+        last_name: "Larsson",
+        bio: "Am a software developer",
+        email: "unikaremail@unikt.se",
+        password: "password",
       })
       .then(function (response) {
         console.log(response);

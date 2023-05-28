@@ -28,14 +28,16 @@ const LoginPagePresenter = () => {
   const loginUser = () =>
     axios
       .post("https://localhost:8080/api/auth/login", {
-        email: EmailInput,
-        password: PasswordInput,
+        email: "uniktmail@unikt.se",
+        password: "passwordunique",
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
+        console.log(response.data.token);
         // Todo: Add response to redux state
+        localStorage.setItem("token", response.data.token);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
 

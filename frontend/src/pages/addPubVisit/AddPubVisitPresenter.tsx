@@ -32,13 +32,22 @@ const AddPubVisitPresenter: FC = () => {
 
   const handleSubmitClick = () => {
     dispatch(addPubVisit(values));
+    console.log(localStorage.getItem("token"));
     axios
-      .put("https://localhost:8080/api/pub_visits", {
-        pubName: values.pubName,
-        visitDateObject: values.visitDate,
-        review: values.review,
-        comment: values.comment,
-      })
+      .put(
+        "https://localhost:8080/api/pub_visits",
+        {
+          pubName: values.pubName,
+          visitDateObject: values.visitDate,
+          review: values.review,
+          comment: values.comment,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
       .then(function (response) {
         console.log(response);
         dispatch(addPubVisit(values));
