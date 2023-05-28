@@ -3,8 +3,6 @@
   height: 100%;
   margin: auto;
   justify-content: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 22px;
 }
 
 .addVisitContainer {
@@ -19,10 +17,7 @@
 .introText {
   margin-top: 0px;
   margin-bottom: 5px;
-  font-size: 18px;
   font-weight: 500;
-  line-height: 30px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 .submitButton {
@@ -30,10 +25,8 @@
   background-color: #ef6767;
   padding: 10px;
   border-radius: 10px;
-  font-family: Arial, Helvetica, sans-serif;
   width: 50%;
   text-align: center;
-  font-size: 18px;
   font-weight: 600;
   color: white;
   box-sizing: border-box;
@@ -46,6 +39,5 @@
 }
 
 .commentDesc {
-  font-size: 22px;
   font-weight: 500;
 }

@@ -30,10 +30,10 @@ const LoginPageView: FC<LoginPageViewProps> = ({
   isLoading,
 }) => {
   return (
-    <div className="registerPage">
-      <div className="registerContainer">
+    <div className="loginPage">
+      <div className="loginContainer">
         <img src={imageURL} alt="My Image" />
-        <p className="introText">{introText}</p>
+        <p className="loginIntroText">{introText}</p>
         <InputField
           label={"Email"}
           name="email"

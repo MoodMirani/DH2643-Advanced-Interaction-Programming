@@ -32,11 +32,13 @@ function App() {
           </Routes>
         </div>
       ) : (
-        <Routes>
-          <Route path="/" element={<RegisterPagePresenter />} />
-          <Route path="/register" element={<RegisterPagePresenter />} />
-          <Route path="/login" element={<LoginPagePresenter />} />
-        </Routes>
+        <div className="mainContainer">
+          <Routes>
+            <Route path="/" element={<RegisterPagePresenter />} />
+            <Route path="/register" element={<RegisterPagePresenter />} />
+            <Route path="/login" element={<LoginPagePresenter />} />
+          </Routes>
+        </div>
       )}
     </BrowserRouter>
   );

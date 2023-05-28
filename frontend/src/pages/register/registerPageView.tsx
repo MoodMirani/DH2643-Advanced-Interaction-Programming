@@ -40,7 +40,9 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [confirmationTimer, setConfirmationTimer] = useState<number | undefined>(undefined);
+  const [confirmationTimer, setConfirmationTimer] = useState<
+    number | undefined
+  >(undefined);
 
   useEffect(() => {
     if (showConfirmation) {
@@ -80,8 +82,8 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
     <div className="registerPage">
       <div className="registerContainer">
         <img src={imageURL} alt="My Image" />
-        <p className="introText">{introText}</p>
-        <div className="userName">
+        <p className="registerIntroText">{introText}</p>
+        <div className="doubleField">
           <InputField
             label={"First Name"}
             name="firstName"
@@ -93,7 +95,7 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
             onChange={handleLastNameChange}
           />
         </div>
-        <div className="userName">
+        <div className="doubleField">
           <InputField
             label={"Email"}
             name="email"

@@ -10,8 +10,7 @@ const LoginPagePresenter = () => {
   const [PasswordInput, setPasswordInput] = useState("");
   const dispatch = useAppDispatch();
   const imageURL =
-    "https://static.vecteezy.com/system/resources/previews/009/248/892/non_2x/bar-or-pub-at-evening-with-alcohol-drinks-bottles-bartender-table-interior-and-chairs-in-indoor-room-in-flat-cartoon-illustration-vector.jpg";
-
+    "https://thumbs.dreamstime.com/b/inre-av-baren-kaf%C3%A9t-eller-st%C3%A5ngen-97547382.jpg";
   // onChange
   const handleEmailInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
