@@ -1,9 +1,9 @@
-// RegisterPageView.tsx
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./RegisterPage.scss";
 import InputField from "../../components/input/InputFieldView";
 import RoutingButton from "../../components/button/RoutingButtonView";
 import Button from "../../components/button/ButtonView";
+import Spinner from "../../components/spinner/Spinner";
 
 interface RegisterPageViewProps {
   FirstNameInput: string;
@@ -19,7 +19,7 @@ interface RegisterPageViewProps {
   handlePasswordInputChange: (
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
-  handleRegisterClick: () => void;
+  onRegisterClick: () => void;
   imageURL: string;
 }
 
@@ -35,9 +35,47 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
   handlebiographyChange,
   handleEmailInputChange,
   handlePasswordInputChange,
-  handleRegisterClick,
+  onRegisterClick,
   imageURL,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationTimer, setConfirmationTimer] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (showConfirmation) {
+      const timer = window.setTimeout(() => {
+        setShowConfirmation(false);
+      }, 3000);
+      setConfirmationTimer(timer);
+    }
+
+    return () => {
+      if (confirmationTimer) {
+        window.clearTimeout(confirmationTimer);
+      }
+    };
+  }, [showConfirmation]);
+
+  const handleRegisterClick = async () => {
+    setIsLoading(true);
+    // Perform the registration request here
+
+    try {
+      // Simulate an asynchronous API call with setTimeout
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Request completed successfully
+      console.log("Registration successful!");
+
+      // Show the confirmation message
+      setShowConfirmation(true);
+    } catch (error) {
+      // Request failed
+      console.error("Registration failed:", error);
+    }
+
+    setIsLoading(false);
+  };
   return (
     <div className="registerPage">
       <div className="registerContainer">
@@ -72,11 +110,17 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
           name="biography"
           onChange={handlebiographyChange}
         />
-        <Button buttonName="Register" handleClick={handleRegisterClick} />
-        <RoutingButton
-          buttonName="or log in to an existing account"
-          linkUrl="/login"
-        />
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Button buttonName="Register" handleClick={onRegisterClick} />
+            <RoutingButton
+              buttonName="or log in to an existing account"
+              linkUrl="/login"
+            />
+          </>
+        )}
       </div>
     </div>
   );
