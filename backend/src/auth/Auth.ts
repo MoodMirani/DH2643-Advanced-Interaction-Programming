@@ -68,7 +68,7 @@ export async function login(
             httpOnly: true,
             maxAge: maxAge * 2000,
           });
-          res.status(200).json({ message: "Logged in.", user });
+          res.status(200).json({ message: "Logged in.", user, token: token });
         } else {
           res.status(401).json({ message: "Login failed." });
         }

@@ -141,18 +141,27 @@ router.get("/bars", (req: express.Request, res: express.Response) => {
   var bars = {}; //Return all bars from DB.
   res.status(200).send(bars);
 });
- 
-router.get("/api/pub_visits", async (req: express.Request, res: express.Response) => {
-  var results = await User.find({}, {"pub_visits": 1}).limit(50);
-  res.status(200).send(results);
-});
 
-//Pub visits for a particular user id (here just called id), by using 
+router.get(
+  "/api/pub_visits",
+  async (req: express.Request, res: express.Response) => {
+    var results = await User.find({}, { pub_visits: 1 }).limit(50);
+    res.status(200).send(results);
+  }
+);
+
+//Pub visits for a particular user id (here just called id), by using
 //req.params.id to get the provided id.
-router.get("/api/pub_visits/:id", async (req: express.Request, res: express.Response) => {
-  var pubVisitsForUser = await User.find({_id: req.params.id}, {"pub_visits": 1}).limit(50); 
-  res.status(200).send(pubVisitsForUser);
-});
+router.get(
+  "/api/pub_visits/:id",
+  async (req: express.Request, res: express.Response) => {
+    var pubVisitsForUser = await User.find(
+      { _id: req.params.id },
+      { pub_visits: 1 }
+    ).limit(50);
+    res.status(200).send(pubVisitsForUser);
+  }
+);
 
 router.get("/drinks/:id", (req: express.Request, res: express.Response) => {
   var drink = { id: 1, name: "White Russian", Type: "alcoholic", Price: 30 }; //Here we'd like to get this from DB.

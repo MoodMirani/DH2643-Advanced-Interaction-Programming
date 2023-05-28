@@ -34,8 +34,10 @@ const LoginPagePresenter = () => {
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
+        console.log(response.data.user._id);
         // Todo: Add response to redux state
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userID", response.data.user._id);
       })
       .catch((error) => {
         console.log(error);
