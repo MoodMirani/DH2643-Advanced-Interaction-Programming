@@ -13,25 +13,32 @@ import { useAppSelector } from "./hooks/hooks";
 import { loadMapApi } from "./components/utils/GoogleMapsUtils";
 import RegisterPagePresenter from "./pages/register/RegisterPagePresenter";
 import AddPubVisitPresenter from "./pages/addPubVisit/AddPubVisitPresenter";
+import LoginPagePresenter from "./pages/login/LoginPagePresenter";
 
 function App() {
   const registered = useAppSelector((state) => state.user.registered);
 
   return (
-    <div className="mainContainer ">
+    <BrowserRouter>
       {registered ? (
-        <BrowserRouter>
+        <div className="mainContainer">
           <NavBar />
           <Routes>
             <Route path="/" element={<MyVisitedPubsPresenter />} />
-            <Route path="visitedPubs" element={<MyVisitedPubsPresenter />} />
-            <Route path="addPubVisit" element={<AddPubVisitPresenter />} />
+            <Route path="/visitedPubs" element={<MyVisitedPubsPresenter />} />
+            <Route path="/addPubVisit" element={<AddPubVisitPresenter />} />
+            <Route path="/register" element={<RegisterPagePresenter />} />
+            <Route path="/login" element={<LoginPagePresenter />} />
           </Routes>
-        </BrowserRouter>
+        </div>
       ) : (
-        <RegisterPagePresenter />
+        <Routes>
+          <Route path="/" element={<RegisterPagePresenter />} />
+          <Route path="/register" element={<RegisterPagePresenter />} />
+          <Route path="/login" element={<LoginPagePresenter />} />
+        </Routes>
       )}
-    </div>
+    </BrowserRouter>
   );
 }
 

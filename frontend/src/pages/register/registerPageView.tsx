@@ -2,16 +2,24 @@
 import React, { FC } from "react";
 import "./RegisterPage.scss";
 import InputField from "../../components/input/InputFieldView";
+import RoutingButton from "../../components/button/RoutingButtonView";
+import Button from "../../components/button/ButtonView";
 
 interface RegisterPageViewProps {
   FirstNameInput: string;
   LastNameInput: string;
   biographyInput: string;
+  EmailInput: string;
+  PasswordInput: string;
   introText: string;
   handleFirstNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleLastNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handlebiographyChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmitClick: () => void;
+  handleEmailInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePasswordInputChange: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  handleRegisterClick: () => void;
   imageURL: string;
 }
 
@@ -19,11 +27,15 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
   FirstNameInput,
   LastNameInput,
   biographyInput,
+  EmailInput,
+  PasswordInput,
   introText,
   handleFirstNameChange,
   handleLastNameChange,
   handlebiographyChange,
-  handleSubmitClick,
+  handleEmailInputChange,
+  handlePasswordInputChange,
+  handleRegisterClick,
   imageURL,
 }) => {
   return (
@@ -31,7 +43,6 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
       <div className="registerContainer">
         <img src={imageURL} alt="My Image" />
         <p className="introText">{introText}</p>
-
         <div className="userName">
           <InputField
             label={"First Name"}
@@ -44,15 +55,28 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
             onChange={handleLastNameChange}
           />
         </div>
-      
+        <div className="userName">
+          <InputField
+            label={"Email"}
+            name="email"
+            onChange={handleEmailInputChange}
+          />
+          <InputField
+            label={"Password"}
+            name="password"
+            onChange={handlePasswordInputChange}
+          />
+        </div>
         <InputField
           label={"Short presentation of yourself"}
           name="biography"
           onChange={handlebiographyChange}
         />
-        <div className="submitButton" onClick={handleSubmitClick}>
-          Submit
-        </div>
+        <Button buttonName="Register" handleClick={handleRegisterClick} />
+        <RoutingButton
+          buttonName="or log in to an existing account"
+          linkUrl="/login"
+        />
       </div>
     </div>
   );

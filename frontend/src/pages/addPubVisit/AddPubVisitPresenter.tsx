@@ -3,6 +3,7 @@ import React, { useState, FC } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import { addPubVisit, PubVisit } from "../../redux/PubSlice";
 import AddPubVisitView from "./AddPubVisitView";
+import axios from "axios";
 
 const initialState: PubVisit = {
   pubName: "",
@@ -31,7 +32,20 @@ const AddPubVisitPresenter: FC = () => {
 
   const handleSubmitClick = () => {
     dispatch(addPubVisit(values));
-    alert("A pubvisit was added");
+    axios
+      .put("https://localhost:8080/api/pub_visits", {
+        pubName: values.pubName,
+        visitDateObject: values.visitDate,
+        review: values.review,
+        comment: values.comment,
+      })
+      .then(function (response) {
+        console.log(response);
+        dispatch(addPubVisit(values));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const introText =

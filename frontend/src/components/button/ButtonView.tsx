@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 interface ButtonProps {
   buttonName: string;
   handleClick?: () => void;
-  linkUrl: string;
 }
 
-const Button = ({ buttonName, handleClick, linkUrl }: ButtonProps) => {
+const ButtonView = ({ buttonName, handleClick }: ButtonProps) => {
   return (
-    <Link to={linkUrl} className="buttonContainer" onClick={handleClick}>
+    <div className="buttonContainer" onClick={handleClick}>
       {buttonName}
-    </Link>
+    </div>
   );
 };
 
-export default Button;
+export default ButtonView;
