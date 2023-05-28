@@ -34,8 +34,9 @@ const AddPubVisitPresenter: FC = () => {
     dispatch(addPubVisit(values));
     axios
       .put("https://localhost:8080/api/pub_visits", {
+        user_id: localStorage.getItem("userID"),
         pubName: values.pubName,
-        visitDateObject: values.visitDate,
+        visitDate: values.visitDate,
         review: values.review,
         comment: values.comment,
       })

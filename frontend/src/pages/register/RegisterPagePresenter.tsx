@@ -55,8 +55,8 @@ const RegisterPagePresenter = () => {
         first_name: FirstNameInput,
         last_name: LastNameInput,
         bio: biographyInput,
-        email: PasswordInput,
-        password: EmailInput,
+        email: EmailInput,
+        password: PasswordInput,
       })
       .then(function (response) {
         console.log(response);
