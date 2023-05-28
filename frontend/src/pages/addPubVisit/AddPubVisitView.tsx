@@ -40,7 +40,9 @@ const AddPubVisitView: FC<AddPubVisitViewProps> = ({
         />
         <InputField
           type="date"
-          label={"What date did you visit this pub?"}
+          label={
+            "What date did you visit this pub? (Click the calendar icon to choose date)"
+          }
           name="visitDate"
           onChange={handleChange}
         />

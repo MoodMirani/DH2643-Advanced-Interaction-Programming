@@ -6,20 +6,20 @@ interface UserState {
   FirstName: string;
   LastName: string;
   Email: string;
-  Password: string;
   pubVisits: object[];
   registered: boolean;
   biography: string;
+  isLoading: boolean;
 }
 
 const initialState: UserState = {
   FirstName: "first name",
   LastName: "last name",
   Email: "email@test.se",
-  Password: "password",
   pubVisits: [],
   registered: false,
   biography: "a short biography",
+  isLoading: false,
 };
 
 const userSlice = createSlice({
@@ -35,9 +35,6 @@ const userSlice = createSlice({
     setEmail: (state, action: PayloadAction<string>) => {
       state.Email = action.payload;
     },
-    setPassword: (state, action: PayloadAction<string>) => {
-      state.Password = action.payload;
-    },
     addPubVisit: (state, action: PayloadAction<object>) => {
       state.pubVisits.push(action.payload);
     },
@@ -47,6 +44,9 @@ const userSlice = createSlice({
     setBiography: (state, action: PayloadAction<string>) => {
       state.biography = action.payload;
     },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
   extraReducers: {},
 });
@@ -55,10 +55,10 @@ export const {
   setFirstName,
   setLastName,
   setEmail,
-  setPassword,
   addPubVisit,
   setRegistered,
   setBiography,
+  setIsLoading,
 } = userSlice.actions;
 
 export default userSlice.reducer;

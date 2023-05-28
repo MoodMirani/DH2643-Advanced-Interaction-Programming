@@ -23,14 +23,14 @@ export const User = model<IUser>("User", userSchema);
 
 export interface IPubVisit {
   pubName: String;
-  visitDate: Date;
-  review: Number;
+  visitDate: string;
+  review: string;
   comment: String;
 }
 const PubVisitSchema = new Schema<IPubVisit>({
   pubName: { type: String, unique: false, required: true },
-  visitDate: { type: Date, unique: false, required: false },
-  review: { type: Number, unique: false, required: false },
+  visitDate: { type: String, unique: false, required: false },
+  review: { type: String, unique: false, required: false },
   comment: { type: String, unique: false, required: false },
 });
 export const PubVisit = model<IPubVisit>("PubVisit", PubVisitSchema);

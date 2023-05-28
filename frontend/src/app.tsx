@@ -27,8 +27,6 @@ function App() {
             <Route path="/" element={<MyVisitedPubsPresenter />} />
             <Route path="/visitedPubs" element={<MyVisitedPubsPresenter />} />
             <Route path="/addPubVisit" element={<AddPubVisitPresenter />} />
-            <Route path="/register" element={<RegisterPagePresenter />} />
-            <Route path="/login" element={<LoginPagePresenter />} />
           </Routes>
         </div>
       ) : (

@@ -6,72 +6,67 @@ import {
   setLastName,
   setBiography,
   setRegistered,
+  setEmail,
 } from "../../redux/UserSlice";
+import { updatePubVisits } from "../../redux/PubSlice";
 import RegisterPageView from "./registerPageView";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  biography: "",
+};
 
 const RegisterPagePresenter = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const [FirstNameInput, setFirstNameInput] = useState("");
-  const [LastNameInput, setLastNameInput] = useState("");
-  const [biographyInput, setbiographyInput] = useState("");
-  const [EmailInput, setEmailInput] = useState("");
-  const [PasswordInput, setPasswordInput] = useState("");
+  const [values, setValues] = useState(initialState);
+  const navigate = useNavigate();
 
   const imageURL =
     "https://thumbs.dreamstime.com/b/inre-av-baren-kaf%C3%A9t-eller-st%C3%A5ngen-97547382.jpg";
 
   // onChange
-  const handleFirstNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setFirstNameInput(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastNameInput(event.target.value);
-  };
+  const addUser = () => {
+    setIsLoading(true);
 
-  const handlebiographyChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setbiographyInput(event.target.value);
-  };
-
-  const handleEmailInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEmailInput(event.target.value);
-  };
-
-  const handlePasswordInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setPasswordInput(event.target.value);
-  };
-
-  const addUser = () =>
     axios
       .post("https://localhost:8080/api/auth/register", {
-        first_name: FirstNameInput,
-        last_name: LastNameInput,
-        bio: biographyInput,
-        email: EmailInput,
-        password: PasswordInput,
+        first_name: values.firstName,
+        last_name: values.lastName,
+        bio: values.biography,
+        email: values.email,
+        password: values.password,
       })
-      .then(function (response) {
-        console.log(response);
+      .then((response) => {
+        localStorage.setItem("userID", response.data.user._id);
+        dispatch(setFirstName(response.data.user.first_name));
+        dispatch(setLastName(response.data.user.last_name));
+        dispatch(setBiography(response.data.user.bio));
+        dispatch(setEmail(response.data.user.email));
+        dispatch(setRegistered(true));
+        dispatch(updatePubVisits([]));
+        navigate("/addPubVisit");
       })
       .catch(function (error) {
         console.log(error);
+        alert("Registration failed, please try again");
+        navigate("/register");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
+  };
 
   const handleRegisterClick = () => {
-    dispatch(setFirstName(FirstNameInput));
-    dispatch(setLastName(LastNameInput));
-    dispatch(setBiography(biographyInput));
-    dispatch(setRegistered(true));
     addUser();
   };
 
@@ -80,19 +75,12 @@ const RegisterPagePresenter = () => {
 
   return (
     <RegisterPageView
-      FirstNameInput={FirstNameInput}
-      LastNameInput={LastNameInput}
-      biographyInput={biographyInput}
-      EmailInput={EmailInput}
-      PasswordInput={PasswordInput}
+      values={values}
+      handleChange={handleChange}
       introText={introText}
-      handleFirstNameChange={handleFirstNameChange}
-      handleLastNameChange={handleLastNameChange}
-      handlebiographyChange={handlebiographyChange}
-      handleEmailInputChange={handleEmailInputChange}
-      handlePasswordInputChange={handlePasswordInputChange}
       onRegisterClick={handleRegisterClick}
       imageURL={imageURL}
+      isLoading={isLoading}
     />
   );
 };

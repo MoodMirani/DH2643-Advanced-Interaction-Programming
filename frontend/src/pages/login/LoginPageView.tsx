@@ -7,23 +7,22 @@ import Button from "../../components/button/ButtonView";
 import Spinner from "../../components/spinner/Spinner";
 
 interface LoginPageViewProps {
-  EmailInput: string;
-  PasswordInput: string;
+  values: ValueProps;
   introText: string;
-  handleEmailInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePasswordInputChange: (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleLoginClick: () => void;
   imageURL: string;
   isLoading: boolean;
 }
 
+interface ValueProps {
+  email: string;
+  password: string;
+}
+
 const LoginPageView: FC<LoginPageViewProps> = ({
-  EmailInput,
-  PasswordInput,
-  handleEmailInputChange,
-  handlePasswordInputChange,
+  values,
+  handleChange,
   introText,
   handleLoginClick,
   imageURL,
@@ -34,20 +33,20 @@ const LoginPageView: FC<LoginPageViewProps> = ({
       <div className="loginContainer">
         <img src={imageURL} alt="My Image" />
         <p className="loginIntroText">{introText}</p>
-        <InputField
-          label={"Email"}
-          name="email"
-          onChange={handleEmailInputChange}
-        />
+        <InputField label={"Email"} name="email" onChange={handleChange} />
         <InputField
           label={"Password"}
           name="password"
-          onChange={handlePasswordInputChange}
+          onChange={handleChange}
         />
         {isLoading ? (
           <Spinner />
         ) : (
-          <Button buttonName="Login" handleClick={handleLoginClick} />
+          <RoutingButton
+            buttonName="Login"
+            linkUrl="/"
+            handleClick={handleLoginClick}
+          />
         )}
         <RoutingButton buttonName="or register an account" linkUrl="/" />
       </div>

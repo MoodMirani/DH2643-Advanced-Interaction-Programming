@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../hooks/hooks";
 import { addPubVisit, PubVisit } from "../../redux/PubSlice";
 import AddPubVisitView from "./AddPubVisitView";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const initialState: PubVisit = {
   pubName: "",
@@ -14,7 +15,7 @@ const initialState: PubVisit = {
 
 const AddPubVisitPresenter: FC = () => {
   const [values, setValues] = useState(initialState);
-
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   // onChange
@@ -27,31 +28,10 @@ const AddPubVisitPresenter: FC = () => {
   ) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
-
-  console.log(values);
-
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleButtonClick = async () => {
-    setIsLoading(true);
-    // Perform the submit logic here
-
-    try {
-      // Simulate an asynchronous action with setTimeout
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // Submit completed successfully
-      console.log("Submit successful!");
-    } catch (error) {
-      // Submit failed
-      console.error("Submit failed:", error);
-    }
-
-    setIsLoading(false);
-  };
 
   const handleAddPubVisitClick = () => {
     setIsLoading(true);
-    dispatch(addPubVisit(values));
     axios
       .put("https://localhost:8080/api/pub_visits", {
         user_id: localStorage.getItem("userID"),
@@ -60,13 +40,12 @@ const AddPubVisitPresenter: FC = () => {
         review: values.review,
         comment: values.comment,
       })
-      .then(function (response) {
-        console.log(response);
+      .then(() => {
         dispatch(addPubVisit(values));
         setIsLoading(false);
-        alert("Pubvisit succesfully logged");
+        navigate("/visitedPubs");
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
         setIsLoading(false);
       });

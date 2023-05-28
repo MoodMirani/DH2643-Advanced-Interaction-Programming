@@ -31,7 +31,11 @@ const NavBarView: FC<NavBarViewProps> = ({
         <div className="profileButtons">
           <RoutingButton buttonName="My Visited Pubs" linkUrl="/visitedPubs" />
           <RoutingButton buttonName="Add a pubvisit" linkUrl="/addPubVisit" />
-          <Button buttonName="Log out" handleClick={handleLogoutClick} />
+          <RoutingButton
+            buttonName="Log out"
+            linkUrl="/"
+            handleClick={handleLogoutClick}
+          />
         </div>
       </div>
     </div>

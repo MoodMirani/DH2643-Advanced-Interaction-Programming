@@ -23,6 +23,9 @@ const pubVisitSlice = createSlice({
     addPubVisit: (state, action: PayloadAction<PubVisit>) => {
       state.pubVisits.push(action.payload);
     },
+    updatePubVisits: (state, action: PayloadAction<PubVisit[]>) => {
+      state.pubVisits = action.payload;
+    },
     deletePubVisit: (
       state,
       action: PayloadAction<{ pubName: string; visitDate: string }>
@@ -37,6 +40,7 @@ const pubVisitSlice = createSlice({
   extraReducers: {},
 });
 
-export const { addPubVisit, deletePubVisit } = pubVisitSlice.actions;
+export const { addPubVisit, updatePubVisits, deletePubVisit } =
+  pubVisitSlice.actions;
 
 export default pubVisitSlice.reducer;

@@ -86,8 +86,7 @@ app.put(
     }
     //Ok, now we need to find the person with the person_id and insert a new PubVisit
     //into it's pub_visits array.
-    const visitDateObject = new Date(visitDate);
-    const tempPubVisit = { pubName, visitDateObject, review, comment };
+    const tempPubVisit = { pubName, visitDate, review, comment };
     User.updateOne(
       { _id: user_id },
       { $push: { pub_visits: tempPubVisit } }
