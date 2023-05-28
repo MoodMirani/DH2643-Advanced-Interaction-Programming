@@ -77,7 +77,6 @@ app.get("/profile", userAuth, (req: express.Request, res: express.Response) => {
 
 app.put(
   "/api/pub_visits",
-  userAuth,
   async (req: express.Request, res: express.Response) => {
     const { user_id, pubName, visitDate, review, comment } = req.body;
     if (pubName.length < 1) {

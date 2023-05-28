@@ -30,7 +30,27 @@ const AddPubVisitPresenter: FC = () => {
 
   console.log(values);
 
-  const handleSubmitClick = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleButtonClick = async () => {
+    setIsLoading(true);
+    // Perform the submit logic here
+
+    try {
+      // Simulate an asynchronous action with setTimeout
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Submit completed successfully
+      console.log("Submit successful!");
+    } catch (error) {
+      // Submit failed
+      console.error("Submit failed:", error);
+    }
+
+    setIsLoading(false);
+  };
+
+  const handleAddPubVisitClick = () => {
+    setIsLoading(true);
     dispatch(addPubVisit(values));
     axios
       .put("https://localhost:8080/api/pub_visits", {
@@ -43,9 +63,12 @@ const AddPubVisitPresenter: FC = () => {
       .then(function (response) {
         console.log(response);
         dispatch(addPubVisit(values));
+        setIsLoading(false);
+        alert("Pubvisit succesfully logged");
       })
       .catch(function (error) {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
@@ -57,7 +80,8 @@ const AddPubVisitPresenter: FC = () => {
       introText={introText}
       handleChange={handleChange}
       handleCommentChange={handleCommentChange}
-      handleSubmitClick={handleSubmitClick}
+      handleAddPubVisitClick={handleAddPubVisitClick}
+      isLoading={isLoading}
     />
   );
 };

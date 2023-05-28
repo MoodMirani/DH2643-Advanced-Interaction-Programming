@@ -9,7 +9,8 @@ interface AddPubVisitViewProps {
   introText: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleCommentChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  handleSubmitClick: () => void;
+  handleAddPubVisitClick: () => void;
+  isLoading: boolean;
 }
 
 export interface PubVisit {
@@ -24,27 +25,9 @@ const AddPubVisitView: FC<AddPubVisitViewProps> = ({
   introText,
   handleChange,
   handleCommentChange,
-  handleSubmitClick,
+  handleAddPubVisitClick,
+  isLoading,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleButtonClick = async () => {
-    setIsLoading(true);
-    // Perform the submit logic here
-
-    try {
-      // Simulate an asynchronous action with setTimeout
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // Submit completed successfully
-      console.log("Submit successful!");
-    } catch (error) {
-      // Submit failed
-      console.error("Submit failed:", error);
-    }
-
-    setIsLoading(false);
-  };
-
   return (
     <div className="addPubVisitPage">
       <PageTitleView title="Add a pubvisit" />
@@ -76,7 +59,7 @@ const AddPubVisitView: FC<AddPubVisitViewProps> = ({
         {isLoading ? (
           <Spinner />
         ) : (
-          <div className="submitButton" onClick={handleButtonClick}>
+          <div className="submitButton" onClick={handleAddPubVisitClick}>
             Add Pubvisit
           </div>
         )}

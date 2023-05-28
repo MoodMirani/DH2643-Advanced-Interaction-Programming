@@ -16,6 +16,7 @@ interface LoginPageViewProps {
   ) => void;
   handleLoginClick: () => void;
   imageURL: string;
+  isLoading: boolean;
 }
 
 const LoginPageView: FC<LoginPageViewProps> = ({
@@ -26,27 +27,8 @@ const LoginPageView: FC<LoginPageViewProps> = ({
   introText,
   handleLoginClick,
   imageURL,
+  isLoading,
 }) => {
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleLoginButtonClick = async () => {
-    setIsLoading(true);
-    // Perform the login request here
-
-    try {
-      // Simulate an asynchronous API call with setTimeout
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // Request completed successfully
-      console.log("Login successful!");
-    } catch (error) {
-      // Request failed
-      console.error("Login failed:", error);
-    }
-
-    setIsLoading(false);
-  };
-
   return (
     <div className="registerPage">
       <div className="registerContainer">
@@ -65,7 +47,7 @@ const LoginPageView: FC<LoginPageViewProps> = ({
         {isLoading ? (
           <Spinner />
         ) : (
-          <Button buttonName="Login" handleClick={handleLoginButtonClick} />
+          <Button buttonName="Login" handleClick={handleLoginClick} />
         )}
         <RoutingButton buttonName="or register an account" linkUrl="/" />
       </div>

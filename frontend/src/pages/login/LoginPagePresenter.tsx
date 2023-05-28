@@ -25,7 +25,24 @@ const LoginPagePresenter = () => {
     setPasswordInput(event.target.value);
   };
 
-  const loginUser = () =>
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLoginButtonClick = async () => {
+    setIsLoading(true);
+    // Perform the login request here
+
+    try {
+      // Simulate an asynchronous API call with setTimeout
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Request completed successfully
+    } catch (error) {
+      // Request failed
+      console.error("Login failed:", error);
+    }
+  };
+
+  const loginUser = () => {
+    setIsLoading(true);
     axios
       .post("https://localhost:8080/api/auth/login", {
         email: EmailInput,
@@ -36,10 +53,14 @@ const LoginPagePresenter = () => {
         console.log("Here", response.data.user._id);
         // Todo: Add response to redux state
         localStorage.setItem("userID", response.data.user._id);
+        console.log("Login successful!");
+        setIsLoading(false);
       })
       .catch(function (error) {
+        setIsLoading(false);
         console.log(error);
       });
+  };
 
   const handleLoginClick = () => {
     dispatch(setRegistered(true));
@@ -57,6 +78,7 @@ const LoginPagePresenter = () => {
       handlePasswordInputChange={handlePasswordInputChange}
       handleLoginClick={handleLoginClick}
       imageURL={imageURL}
+      isLoading={isLoading}
     />
   );
 };
