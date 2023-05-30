@@ -33,7 +33,6 @@ const LoginPagePresenter = () => {
         password: values.password,
       })
       .then(function (response) {
-        console.log(response);
         dispatch(setFirstName(response.data.user.first_name));
         dispatch(setLastName(response.data.user.last_name));
         dispatch(setBiography(response.data.user.bio));

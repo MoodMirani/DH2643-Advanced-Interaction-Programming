@@ -38,6 +38,7 @@ const LoginPageView: FC<LoginPageViewProps> = ({
           label={"Password"}
           name="password"
           onChange={handleChange}
+          type="password"
         />
         {isLoading ? (
           <Spinner />

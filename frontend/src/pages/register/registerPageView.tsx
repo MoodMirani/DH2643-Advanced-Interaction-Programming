@@ -53,6 +53,7 @@ const RegisterPageView: FC<RegisterPageViewProps> = ({
             label={"Password (at least 9 characters)"}
             name="password"
             onChange={handleChange}
+            type="password"
           />
         </div>
         <InputField

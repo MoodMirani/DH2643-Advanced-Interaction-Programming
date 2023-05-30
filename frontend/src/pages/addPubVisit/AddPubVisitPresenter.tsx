@@ -42,11 +42,15 @@ const AddPubVisitPresenter: FC = () => {
       })
       .then(() => {
         dispatch(addPubVisit(values));
-        setIsLoading(false);
         navigate("/visitedPubs");
       })
       .catch((error) => {
         console.log(error);
+        alert(
+          "Failed to add pubvisit, please try again and make sure to fill all the fields"
+        );
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   };
