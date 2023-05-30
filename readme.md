@@ -48,3 +48,4 @@ This allows for quick iteration on the backend, serving the "compiled" frontend.
 2. In the project directory, run `docker build -t iprogbackend .`.
 3. Run `docker run -p 3000:3000 iprogbackend`.
 4. App viewable at https://localhost:3000/.
+![MVP Archietecture](https://github.com/MoodSherzad/DH2643-Advanced-Interaction-Programming/assets/61239524/d11affdc-8304-4642-a94c-01c010eb8bf2)
